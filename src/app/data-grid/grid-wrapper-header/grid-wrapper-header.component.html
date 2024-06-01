@@ -1,0 +1,78 @@
+<!-- grid-header -->
+<div class="grid-wrapper_header mb-2 d-flex align-items-center">
+  <div class="grid-wrapper_header-search d-flex align-items-center gap-1">
+    <span>
+      <svg width="14.7" height="14.53">
+        <use xlink:href="assets/images/sprite-icons.svg#search-icon"></use>
+      </svg>
+    </span>
+    <input
+      type="text"
+      class="form-control form-control-sm border-0 search-input"
+      placeholder="Search"
+      [(ngModel)]="searchText"
+      (input)="search(searchText)"
+    />
+  </div>
+
+
+  <div class="grid-wrapper_header-actions">
+    <div class="d-flex align-items-center gap-2 date-actions" *ngIf="module === 'report' && currentTab === 'Summary'">
+      <div><app-report-summary-date-picker></app-report-summary-date-picker></div>
+      <div><button  class="btn btn-sm btn-primary" (click)="sendThanksMessageToAll()">Send Thank Message To All  </button></div>
+       <mat-form-field class="mat-select-control">
+       
+       <mat-select #expertiseSelect (selectionChange)="onExpertiseSelectionChange(expertiseSelect.value)" placeholder="Select expertise">
+          <mat-option class="mat-option-custom" value="All">All </mat-option>
+          <mat-option class="mat-option-custom" *ngFor="let item of allExperties" value="{{item.name}}">{{item.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="mat-datepicker mat-datepicker-sm mat-icon-hidden">
+        <input matInput [matDatepicker]="dp" placeholder="Year" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)" panelClass="example-month-year-picker">
+        </mat-datepicker>
+
+      </mat-form-field>
+    </div>
+    <div class="grid-wrapper_header-actions d-flex align-items-center" *ngIf="module == 'Members'">
+      <span class="d-flex align-items-center">
+        <mat-slide-toggle class="switch-toggle" [(ngModel)]="callTextOnOff" (click)="textOnOff(callTextOnOff)"></mat-slide-toggle>
+        <span class="font-12">Call Text On/Off</span>
+      </span>
+      <span class="d-flex align-items-center">
+        <mat-slide-toggle class="switch-toggle"  [(ngModel)]="notificationsOnOff" (click)="notificationOnOff(notificationsOnOff)"></mat-slide-toggle>
+        <span class="font-12">Notifications On/Off</span>
+      </span>
+      <button class="btn btn-primary btn-md rounded-pill font-12 font-500" (click)="add()">+ Add new</button>
+    </div>
+    <div class="grid-wrapper_header-actions d-flex align-items-center" *ngIf="module == 'CallHistory'">
+      <div class="d-flex align-items-center gap-2 flex-1" >
+        <div class="mat-checkbox mat-checkbox-sm">
+          <mat-checkbox  [(ngModel)]="isDispatchedOnly" (click)="dispatched(isDispatchedOnly)">Dispatched Calls Only
+          </mat-checkbox>
+        </div>
+
+        <button class="btn btn-sm radius24 btn-primary" (click)="GetCallListExport()">Export</button>
+      </div>
+  </div>
+    <div *ngIf="module != 'Members' && module != 'Contacts' && currentTab != 'Summary'">
+      <app-date-component-renderer
+      [currentDateFilter]="currentDateFilter"
+      [memberByDateSummaryGrid]="true"
+      (dateFilterOutput)="dateFilterOutput($event)"
+      [currentTab]="currentTab"
+      ></app-date-component-renderer>
+    </div>
+
+    <div *ngIf="module === 'report' && currentTab != 'Summary'">
+      <div  (click)="openSettingpopUp()">
+        <i class="fa-solid fa-gear pointer"></i>
+      </div>
+      </div>
+
+    <button  *ngIf="module == 'Contacts'" class="btn btn-border btn-sm rounded-pill font-12 font-500" (click)="add()">+ Add new</button>
+  </div>
+</div>
+<!--End grid-header -->

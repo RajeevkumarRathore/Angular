@@ -1,0 +1,115 @@
+<app-dialog [title]="'Create Member'" [actions]="[{ text: 'Close', buttonSize: 'large', buttonStyle: 'dark'},
+{ text: 'Create', buttonSize: 'extra-large', spin: spin}]" (close)="close()" (action)="action($event)">
+    <div class="Create-Member-form">
+      <form [formGroup]="memberForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="First name" class="control-label">First name:</label>
+                    <input type="text" class="form-control" placeholder="First name" formControlName="first_name">
+                    <div  *ngIf="(memberForm.controls['first_name'].hasError('required') && memberForm.controls['first_name'].touched || flag.submitted)">
+                      <span class="invalid-feedback d-block" *ngIf="memberForm.controls['first_name'].hasError('required')">
+                        First name is required
+                      </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Last name" class="control-label">Last name:</label>
+                    <input type="text" class="form-control" placeholder="Last name" formControlName="last_name">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Badge Number" class="control-label">Badge Number:</label>
+                    <input type="text" class="form-control" placeholder="Badge Number" formControlName="badge_number">
+                    <div *ngIf="(memberForm.controls['badge_number'].hasError('required') && memberForm.controls['badge_number'].touched || flag.submitted)">
+                      <span class="invalid-feedback d-block" *ngIf="memberForm.controls['badge_number'].hasError('required')">
+                        Badge Number is required
+                      </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Member" class="control-label">Member Short Id:</label>
+                    <input type="text" class="form-control" placeholder="Member Short Id" formControlName="memberShortId">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Email" class="control-label">Email:</label>
+                    <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Address" class="control-label">Address:</label>
+                    <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="License" class="control-label">License Type:</label>
+                    <input type="text" class="form-control" placeholder="License Type" formControlName="license_type">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Level" class="control-label">Level Service:</label>
+                    <input type="text" class="form-control" placeholder="Level Service" formControlName="level_service">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Phone" class="control-label">Phone:</label>
+                    <input type="text" class="form-control" placeholder="Phone" formControlName="phone_number">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Expertises" class="control-label">Expertises:</label>
+                    <input type="text" class="form-control" placeholder="Expertises" formControlName="expertises">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Emergency" class="control-label">Emergency Type:</label>
+                    <select class="form-control" placeholder="Select Emergency Type" formControlName="emergencyTypeId">
+                      <option [value]="2">EMS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Member" class="control-label">Member Status:</label>
+                    <select class="form-control" placeholder="Select Member Status" formControlName="memberStatusId">
+                      <option [value]="1">Static</option>
+                      <option [value]="2">NonStatic</option>
+                      <option [value]="3">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group d-flex flex-column">
+                    <div class="col-md-12">
+                      <mat-checkbox class="mat-checkbox mat-checkbox-sm" placeholder="First name" formControlName="isBus">
+                        Is Bus:
+                      </mat-checkbox>
+                  </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group d-flex flex-column">
+                    <div class="col-md-12">
+                      <mat-checkbox class="mat-checkbox mat-checkbox-sm" placeholder="First name" formControlName="isTakingShifts">
+                        Is Taking Shifts:
+                      </mat-checkbox>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</app-dialog>

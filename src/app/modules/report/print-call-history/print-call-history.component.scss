@@ -1,0 +1,73 @@
+.call-history {
+    -webkit-print-color-adjust: exact !important;
+    .print-logo {
+        width: 120px;
+        margin: auto;
+        margin-bottom: 16px;
+        img{
+            height: 70px;
+        }
+    }
+    &_box {
+        border-radius: 8px;
+        padding: 18px 24px;
+        width: 100%;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 5%);
+        background-color: #F8F8F8;
+        margin-bottom: 27px;
+        &-info{
+            .info-report{
+                font-size: 12px;
+            }
+        }
+        &-data {
+            padding: 11px;
+            justify-content: space-between;
+            background: #E2EDFA;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            .lable-report {
+                font-size: 10px;
+                font-weight: 500;
+                white-space: nowrap;
+            }
+        }
+    }
+    &_box-report{
+        padding-right: 2px;
+        .report-list {
+            border-top: 1px solid #8888;
+            padding: 6px 0;
+            &:last-child{
+                margin-bottom: 0px;
+                border-bottom: 1px solid #8888;
+            }
+            &_address{
+                font-size: 12px;
+                width: 70%;
+            }
+            .address-info{
+                font-size: 10px;
+                min-width: 10%;
+                .buses{
+                    width: 264px;
+                    &_number{
+                        border: 1px solid var(--color-gray-3);
+                        padding: 1px 8px;
+                        color: var(--color-gray-3);
+                        border-radius: 4px;
+                        font-size: 10px;
+                        height: 20px;
+                    }
+                    &_label {
+                        flex-basis: 32px;
+                        min-width: 32px;
+                        display: inline-block;
+                    }
+                }
+
+            }
+
+        }
+    }
+}

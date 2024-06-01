@@ -1,0 +1,61 @@
+<!-- Night Shift box -->
+<div class="night_shift">
+    <h2 class="pb-3 title">Night shift</h2>
+    <div class="d-flex flex-column gap-2">
+        <div class="shift_timing">
+            <h2 class="mb-2 title">Yesterday</h2>
+            <div class="d-flex justify-content-between"  *ngIf="yesterdayData && yesterdayData.length > 0; else noRecord">
+                <div class="timing" *ngFor="let shift of yesterdayData">
+                    <p><span  class="font-12 text-black-2">{{shift.scheduleName}}</span></p>
+                    <div class="timing-box d-flex gap-2">
+                        <span *ngFor="let item of shift.badge_Number">{{item}}</span>
+                    </div>
+                </div>              
+            </div>
+            <ng-template #noRecord>
+                <div class="no-record-message text-center mt-4">
+                    <p>No record found.</p>
+                </div>
+            </ng-template>
+            
+        </div>
+        <div class="shift_timing bg-primary-light">
+            <h2 class="mb-2 title">Today</h2>
+            <div class="d-flex justify-content-between"  *ngIf="todayData && todayData.length > 0; else noRecord">
+                <div class="timing" *ngFor="let shift of todayData">
+                    <p><span class="font-12 text-black-2">{{shift.scheduleName}}</span></p>
+                    <div class="timing-box d-flex gap-2">
+                        <span *ngFor="let item of shift.badge_Number">{{item}}</span>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noRecord>
+                <div class="no-record-message text-center mt-4">
+                    <p>No record found.</p>
+                </div>
+            </ng-template>
+            
+        </div>
+
+        <div class="shift_timing" >
+            <h2 class="mb-2 title">Tomorrow</h2>
+            <div class="d-flex justify-content-between" *ngIf="tomorrowData && tomorrowData.length > 0; else noRecord">
+                <div class="timing" *ngFor="let shift of tomorrowData">
+                    <p><span class="font-12 text-black-2">{{shift.scheduleName}}</span></p>
+                    <div class="timing-box d-flex gap-2">
+                        <span *ngFor="let item of shift.badge_Number">{{item}}</span>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noRecord>
+                <div class="no-record-message text-center mt-4">
+                    <p>No record found.</p>
+                </div>
+            </ng-template>
+            
+        </div>
+        
+        
+    </div>
+</div>
+<!--// Night Shift box -->

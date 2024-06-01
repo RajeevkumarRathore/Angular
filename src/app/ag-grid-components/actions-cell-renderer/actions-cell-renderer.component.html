@@ -1,0 +1,10 @@
+<span class="grid-actions d-flex align-items-center gap-1 pointer">
+    <svg class="action-icon" width="14.62" height="13.91" (click)="edit()" *ngIf="params.edit">
+        <use xlink:href="assets/images/sprite-icons.svg#edit-icon"></use>
+    </svg>
+    <svg class="action-icon delete" width="14.62" height="13.91" (click)="delete()" *ngIf="params.delete">
+        <use xlink:href="assets/images/sprite-icons.svg#delete-icon"></use>
+    </svg>  
+</span>
+<button class="btn btn-md btn-primary py-1 rounded-pill" (click)="restore()" *ngIf="params.restore && params.data.status === 'Canceled'">Restore</button>
+

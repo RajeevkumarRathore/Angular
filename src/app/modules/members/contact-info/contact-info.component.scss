@@ -1,0 +1,8 @@
+.table-default {
+    td {
+        width: 16%;
+        &:first-child {
+            width: 30%;
+        }
+    }
+}

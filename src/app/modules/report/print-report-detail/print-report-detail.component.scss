@@ -1,0 +1,50 @@
+.print-report_details {
+    -webkit-print-color-adjust: exact !important;
+    .print-logo{
+        width: 130px;
+        margin: auto;
+    }
+    .report-info {
+        .general-info{
+            padding: 14px 10px;
+            background-color: #f4f4ff;
+            .form-group-row{
+                .progress {
+                    width: 85%;
+                    height: 4px;
+                    margin: auto;
+                }
+                .members-list{
+                  width: 130px;
+                    &-row{
+                        grid-gap: 4px;
+                        &-box {
+                            border: 1px solid var(--color-gray-3);
+                            border-radius: 5px;
+                            padding: 1px 5px;
+                            font-size: 10px;
+                        }
+                        .active {
+                            background-color: #0d6efd;
+                            color: #fff;
+                            border: 1px solid #0d6efd !important;
+                        }
+                    }
+                }
+            }
+        }
+        .activity-info{
+            &-list{
+                border-bottom: 1px solid var(--color-gray-2);
+                padding: 6px 0px;
+            }
+        }
+        .note-info{
+            &-list{
+                    padding: 8px 0px;
+                    border-top: 1px solid var(--color-gray-2);
+                    border-bottom: 1px solid var(--color-gray-2);
+            }
+        }
+    }
+}

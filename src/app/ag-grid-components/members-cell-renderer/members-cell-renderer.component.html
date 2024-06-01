@@ -1,0 +1,7 @@
+
+<div *ngIf="params.data && params.colDef.headerName === 'Status'">
+<p class="font-12 text-success-4"><span class="active-dot"></span> {{rowData.status}}</p>
+</div>
+<div *ngIf="params.data && params.column.colId === 'emergencyTypeId'">
+  <span class="member-badge font-10 font-500 radius24 text-white py-1 px-2 mt-1 text-uppercase">{{rowData.emergencyTypeId}}</span>
+  </div>

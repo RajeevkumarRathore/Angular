@@ -1,0 +1,23 @@
+// .sidebar {
+//     position: inherit;
+//     &_nav {
+//         width: 31%;
+//     }
+// }
+.selected {
+    background-color: var(--color-primary-1);
+    color: var(--color-white);
+  }
+  .header-dialog {
+    padding: 10px 24px !important;
+    .info-data{
+      max-height: calc(100vh - 198px);
+    }
+  }
+  @media(max-width: 1200px){
+    .important-tabs {
+      flex-direction: row !important;
+      grid-gap: 4px;
+      flex-wrap: wrap;
+  }
+  }

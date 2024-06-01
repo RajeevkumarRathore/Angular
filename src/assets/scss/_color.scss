@@ -1,0 +1,71 @@
+$primary_color: #5B78ED;
+$white_color: #ffffff;
+
+$background_color: #EFF4FF;
+
+:root {
+  /* variable Color */
+  --color-white: #ffffff;
+  --color-darkbrown: #48484A;
+  --color-black: #000000;
+  --color-black-2: #333333;
+  --color-black-1: #141414;
+  --color-black-3: #222F3F;
+  --color-primary: #5B78ED;
+  --color-primary-dark: #4762D1;
+  --color-primary-1: #6885F7;
+  --color-primary-2: #8198F0;
+  --color-deep-light: #F7F7F7;
+  --color-vilot-light: #E6EAFD;
+  --color-primary-light: #F4F4FF;
+  --color-secondary: #48484a;
+  --color-light-dark: #505050;
+  --color-secondary-2: #565656;
+  --color-secondary-dark: #3c3c3c;
+  --color-gray: #A8B3C1;
+  --color-gray-1: #E0E0E0;
+  --color-gray-2: #BABABA;
+  --color-gray-3: #888888;
+  --color-gray-4: #EBEBEB;
+  --color-gray-5: #DBDBDB;
+  --color-gray-6: #A8A8A8;
+  --color-gray-7: #A5A4A4;
+  --color-gray-8: #F0F0F0;
+  --color-gray-9: #FCFCFC;
+  --color-gray-10: #F5F5F5;
+  --color-transparent: transparent;
+
+  /* transition */
+  --transition-primary: all 0.5s ease;
+
+  /* feedback color */
+  --color-lightblue: #74BBCD;
+  --color-sky:#38C4DE;
+  --color-sky-1:#67C7EB;
+  --color-sky-light:#E2EDFA;
+  --color-sky-blue:#4292F0;
+  --color-blue: #3453A5;
+  --color-vilot: #9227FB;
+  --color-success: #5FA950;
+  --color-success-1: #58CB79;
+  --color-success-2: #7EE585;
+  --color-success-3: #60BCB3;
+  --color-success-4: #68E16F;
+  --color-success-light: #47D181;
+  --color-success-dark: #4FB030;
+  --color-danger: #CD504B;
+  --color-red: #D9645E;
+  --color-red-1: #EB4E4E;
+  --color-red-2: #F27C7C;
+  --color-red-light: #FDEBEB;
+  --color-danger-light: #EC6666;
+  --color-error: #ff7676;
+--color-pink-active: #f64e60;
+  --color-pink: #FF8080;
+  --color-warning: #FD9A27;
+  --color-yellow: #EE9924;
+  --color-mat-light: #ffe6c9;
+ --color-yellow-light :#FFF2BC;
+  --color-yellow-dark:#D5A835;
+  --color-green: #0BC420;
+}

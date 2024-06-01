@@ -1,0 +1,48 @@
+.sidebar {
+    background: #fff;
+    overflow: hidden;
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px;
+        &_title {
+            font-size: 19px;
+            color: #3f4254;
+        }
+    }
+    &-body {
+        padding: 0 32px;
+        height: calc(100% - 79px);
+        overflow: hidden auto;
+        .user-info-content {
+            margin-bottom: 32px;
+            .symbol-label {
+                border-radius: 0.85rem;
+                background-color: #efe4a1;
+                width: 80px;
+                min-width: 80px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+            }
+        }
+        .login-user-content {
+            .symbol-label {
+                width: 30px;
+                height: 30px;
+                background-color: #efe4a1;
+                border-radius: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .symbol-title {
+                font-size: 17px;
+                width: 70px;
+            }
+        }
+    }
+}

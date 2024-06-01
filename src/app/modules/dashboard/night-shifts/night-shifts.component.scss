@@ -1,0 +1,33 @@
+.night_shift{
+    .title{
+        color: var(--color-black-2);
+        font-size: 16px;
+    }
+    .shift_timing {
+        border: 1px solid var(--color-gray-5);
+        padding: 8px;
+        border-radius: 4px;
+        min-height: 85px;
+         .title{
+            color: var(--color-black-2);
+            font-size: 12px;
+         }
+          .timing{
+            color: var(--color-black-2);
+            .timing-box {
+                span {
+                    border: 1px solid var(--color-gray-3);
+                    padding: 0px 3px;
+                    border-radius: 4px;
+                    color: var(--color-black);
+                    width: 44px;
+                    text-align: center;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+          }
+    
+    }
+}

@@ -1,0 +1,85 @@
+<div class="card_report print-report_details" style=" page-break-inside: avoid;">
+    <div class="print-logo mb-4 text-center">
+        <img src="assets/images/logo.png" alt="" class="img-fluid">
+    </div>
+        <h3 class="font-16 font-600 mb-2 text-black">General Info</h3>
+    <div class="report-info" id="printDetailsId">
+        <div class="general-info row mb-4">
+             <div class="col-6">
+                <div class="form-group-row">
+                    <label for="name" class="form-group-row-label">Full Name</label>
+                    <p  class="font-12 font-500">{{callHistoryDetailData.fullName}}</p>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Gender</label>
+                    <p class="font-12 font-500">{{callHistoryDetailData.gender}}</p>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Age</label>
+                    <p  class="font-12 font-500">{{callHistoryDetailData.age}}</p>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Phone Number</label>
+                    <p  class="font-12 font-500"> {{callHistoryDetailData.callerNumber}}</p>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Location</label>
+                    <div><p class="font-12 font-500">{{callHistoryDetailData.address}}</p></div>
+                </div>
+                <div class="form-group-row align-items-start">
+                    <label for="gender" class="form-group-row-label">Members</label>
+                    <div class="members-list d-flex flex-column" >
+                        <div class="members-list-row d-flex align-items-center justify-content-between mb-1" *ngFor="let item of callHistoryDetailData?.members">
+                            <p class="text-decoration-underline font-500">{{item?.badgeNumber}}</p>
+                            <div class="d-flex align-items-center gap-1">
+                              <span class="members-list-row-box"[ngClass]="item.isDriver == true ? 'active' : 'members-list-row-box' ">DR</span>
+                              <span class="members-list-row-box"[ngClass]="item.isSceneOnly == true ? 'active' : 'members-list-row-box' ">SO</span>
+                              <span class="members-list-row-box"[ngClass]="item.isTransport == true ? 'active' : 'members-list-row-box' ">TR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <div class="col-6">
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Type</label>
+                    <span class="py-1 px-2 bg-yellow radius24 text-white">{{callHistoryDetailData.agencySegment}}</span>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Call Type</label>
+                    <span  class="font-12 font-500">{{callHistoryDetailData.callType}}</span>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Hospital</label>
+                    <span  class="font-12 font-500">{{callHistoryDetailData.hospital}}</span>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Audio </label>
+                    <span  class="font-12 font-500">-</span>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Dispatcher </label>
+                    <span  class="font-12 font-500">{{callHistoryDetailData.createdBy}}</span>
+                </div>
+                <div class="form-group-row">
+                    <label for="gender" class="form-group-row-label">Canceled call or dismissed events</label>
+                    <span  class="font-12 font-500"> {{callHistoryDetailData.dismissedEvent}}</span>
+                </div>
+             </div>
+        </div>
+        <div class="activity-info mb-3 pb-1">
+            <h2 class="text-black font-16 font-600 mb-2">Activity</h2>
+            <div class="activity-info-list" *ngFor="let item of callhistoryClientActivityLogs">
+                <p class="font-12">{{item?.activity}}</p>
+                <span class="text-gray-2 font-10">{{item?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+            </div>
+        </div>
+        <div class="note-info mb-2">
+            <h2 class="text-black font-16 font-600 mb-2">Note</h2>
+            <div class="note-info-list"  *ngFor="let note of callHistoryNotes">
+              <p class="font-12">{{note.note}}</p>
+              <span class="text-gray-2 font-10">{{note?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+
+<div class="d-flex align-items-center gap-1" *ngIf="params?.data && props === 'reports'">
+    <div  *ngFor="let item of reports">
+      <span *ngIf="item !== ''" class="buses_number pointer ng-star-inserted">{{item}}</span>
+    </div>
+  </div>
+
+<div class="d-flex align-items-center gap-1" *ngIf="params?.data && props === 'externalFilePath'">
+ <div>
+  No audio exists for this call.
+ </div>
+

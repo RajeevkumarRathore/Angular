@@ -1,0 +1,9 @@
+<app-dialog [title]="'Add Mapped Radio'" [actions]="[{ text: 'Close', buttonSize: 'large', buttonStyle: 'dark'},
+{ text: 'Create', buttonSize: 'extra-large', spin: spin}]" (close)="close()" (action)="action($event)">
+  <div>
+    <div class="form-group">
+        <label for="Last name" class="control-label">Audio Form:</label>
+        <input type="text" class="form-control" placeholder="Audio Form" [(ngModel)]="audioForm">
+    </div>
+</div>
+</app-dialog>

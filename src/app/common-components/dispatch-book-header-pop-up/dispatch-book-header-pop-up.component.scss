@@ -1,0 +1,21 @@
+.notifications {
+    &-body {
+        margin-bottom: 4px;
+        min-height: 28px;
+        &_list {
+            &--item {
+                font-size: 13px;
+                padding: 6px 0;
+                border-bottom: 1px solid #f0f0f0;
+                min-height: 40px;
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+
+    }
+ }
+ .custom-dailog_wrapper {
+  padding: 10px 16px;
+}

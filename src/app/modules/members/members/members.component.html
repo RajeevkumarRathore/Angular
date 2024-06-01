@@ -1,0 +1,30 @@
+<div class="inner-wrapper">
+  <div class="inner-wrapper_body">
+    <app-header-summary [counts]="memberIcons" [module]="'Members'"></app-header-summary>
+    <div class="title font-20 font-500 mb-2">Members</div>
+    <app-grid-wrapper
+    [columnDefs]="columnDefs"
+    [gridOptions]="gridOptions"
+    [module]="'Members'"
+    (callTextTypeData)="updateCallTextOnOffStatus($event)"
+    [callTextOnOff]="callTextOnOff"
+    (notificationsTypeData)="updateGeneralNotificationsOnOffStatus($event)"
+    [notificationsOnOff]="notificationsOnOff"
+    (searchText)="searchMember($event)"
+    (addNewMember)="addNewMember()"
+    ></app-grid-wrapper>
+  </div>
+</div>
+<mat-sidenav-container class="sidebar" [ngClass]="{'hide': !sidePanelData}"  [hasBackdrop]="false">
+  <mat-sidenav #memberSidenav mode="over" position="end" class="sidebar_nav" (keydown.escape)="close()" >
+    <div *ngIf="loading" class="loading-spinner">    
+      <div id="loader">
+        <div l a></div><div l b></div><div l c></div><div l d></div><div l e></div><div l f></div><div l g></div><div l h></div></div>      <!-- <mat-progress-spinner class="mat-spiner" mode="indeterminate"></mat-progress-spinner> -->
+    </div>
+      <app-edit-member-detail-side-bar  *ngIf="sidePanelData" [params]="sidePanelData"      
+       ></app-edit-member-detail-side-bar>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+
+

@@ -1,0 +1,12 @@
+<app-dialog
+(action)="close($event)"
+  (close)="close()"
+>
+<div class="text-center">
+  <span class="icon"><i class="fa-regular fa-circle-xmark"></i></span>
+  <h1  *ngIf= "this.data.title==='End date is empty'" class="mt-2">End date is empty</h1>
+  <h1 *ngIf= "this.data.title==='Members is empty'"  class="mt-2">Members is empty</h1>
+  <div class="my-4" [innerHTML]="data.message"></div>
+<button class="btn btn-lg btn-primary" (click)="close()"> OK</button>
+</div>
+</app-dialog>

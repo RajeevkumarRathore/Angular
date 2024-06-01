@@ -1,0 +1,65 @@
+.chart-box_main {
+    // overflow: auto;
+    // max-height: calc(100vh - 224px);
+    .chart-box {
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 8%);
+        border-radius: 8px;
+        padding: 16px;
+        height: 100%;
+        min-height: 340px;
+        max-height: 340px;
+        background-color: var(--color-white);
+         &_header{
+            .title {
+                color: var(--color-black-2);
+                font-size: 14px;
+            }
+         }
+        &_img {
+            margin: 24px auto;
+            ::ng-deep{
+                .highcharts-container {
+                    height: 130px !important;
+                }
+            }   
+    
+        }
+        &_graph{
+            height: 260px;
+        }
+        &_line-graph {
+            height: 298px;
+            .graph{
+                height: 108px;
+            }
+            .title{
+                font-size: 10px;
+            }
+        }
+        .chart_results {
+            display: flex;
+            column-gap: 9px;
+            row-gap: 6px;
+            flex-wrap: wrap;
+            overflow: auto;
+            .results {
+                flex-basis: 48.3%;
+                min-width: 46.3%;
+                flex: 1;
+                padding: 7.5px;
+                background-color: var(--color-primary-light);
+                border-radius: 8px;
+                font-size: 10px;
+                color: var(--color-black-2);
+                grid-gap: 6px;
+                &_value {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    flex: 1;
+                }
+            }
+        }
+    }
+    
+}

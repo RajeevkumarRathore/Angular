@@ -1,0 +1,150 @@
+<div class="card_report side-wrapper_details side-panel">
+    <div class="card_report-header d-flex align-items-center justify-content-between side-panel-header">
+      <h3 class="font-18">{{callHistoryDetailData?.localCadNumber}}</h3>
+        <button class="btn btn-sm btn-border me-3 px-3 ms-auto"  (click)="printCallHistory()" >Print
+          <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm ms-2"></span> -->
+        </button>
+        <div (click)="close(true)">
+        <div class="close-btn">
+          <svg width="10" height="10">
+            <use xlink:href="assets/images/sprite-icons.svg#close-icon"></use>
+          </svg>
+        </div>
+        </div>
+    </div>
+    <div class="report-info side-panel-body" >
+      <p class="line-divider d-flex gap-3 mb-3 text-gray-2 font-12">Client info</p>
+      <div class="row mb-3">
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Full Name</span>
+            <p class="font-12 font-500">{{callHistoryDetailData?.fullName}}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Gender</span>
+            <p class="font-12 font-500">{{callHistoryDetailData?.gender}}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Age</span>
+            <p class="font-12 font-500">{{callHistoryDetailData?.age}}</p>
+          </div>
+        </div>
+      </div>
+      <p class="line-divider d-flex gap-3 mb-3 text-gray-2 font-12">Call Location</p>
+      <div class="row mb-3">
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Phone Number</span>
+            <p class="font-12 font-500">{{callHistoryDetailData?.callerNumber}}</p>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Locations</span>
+            <p class="font-12 font-500">{{callHistoryDetailData?.address}}</p>
+          </div>
+        </div>
+      </div>
+      <p class="line-divider d-flex gap-3 mb-3 text-gray-2 font-12">Call Details</p>
+      <div class="call-history_deatils">
+        <div class="row">
+                <div class="col-4">
+            <div class="call-history_deatils_members">
+              <p class="d-flex mb-2 text-gray-2 font-12 font-500">Members</p>
+              <div class="member-box-column d-flex flex-column scroll">
+                <div *ngFor="let item of callHistoryDetailData?.members">
+                  <div class="member-list" *ngIf="item?.memberId != null">
+                  <span class="font-16 font-500 me-3 maxW-120">{{item?.badgeNumber}}</span>
+                  <div class="d-flex align-items-center ms-auto">
+                    <span class="member-list_box" [ngClass]="item.isDriver == true ? 'selected' : 'member-list_box' " (click)="changeMemberType(item,'DR')">DR</span>
+                    <span class="member-list_box" [ngClass]="item.isSceneOnly == true ? 'selected' : 'member-list_box' " (click)="changeMemberType(item,'SO')">SO</span>
+                    <span class="member-list_box" [ngClass]="item.isTransport == true ? 'selected' : 'member-list_box' " (click)="changeMemberType(item,'TR')">TR</span>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="call-history_deatils_type">
+              <p class="d-flex mb-2 text-gray-2 font-12 font-500">Type</p>
+              <div class="type-info mb-2">
+                <span class="bg-yellow radius24 text-white py-1 font-12 px-3">{{(callHistoryDetailData?.agencySegment).toUpperCase()}}</span>
+              </div>
+              <div class="type-info mb-3">
+                <p class="d-flex mb-1 text-gray-2 font-12 font-500">Hospital</p>
+
+                <select class="form-control form-control-sm form-select" >
+                  <option *ngFor="let item of callHistoryDetailData?.hospitalOptions" [value]="item.id">
+                    {{ item.name }}
+                  </option>
+                  <option>
+                    {{callHistoryDetailData?.hospital}}
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="type-info mb-3">
+                <p class="d-flex mb-1 text-gray-2 font-12 font-500">Audio</p>
+                <div class="d-flex text-gray-2 py-1 px-3 align-items-center radius24 justify-content-between bg-gray-1 minH-30 font-12">
+                  <i class="fa-solid fa-play"></i>
+                  <span class="text-black mx-2 flex-1">Audio</span>
+                  <i class="fa-solid fa-volume-high mx-2"></i>
+                  <i class="fa-solid fa-ellipsis-vertical text-black"></i>
+                </div>
+              </div>
+              <div class="type-info mb-2">
+                <p class="d-flex mb-1 text-gray-2 font-12 font-500">Dispatcher</p>
+                <button class="brn btn-xs font-12 font-500 btn-border">{{callHistoryDetailData?.createdBy}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="call-history_call-type">
+              <p class="d-flex mb-2 text-gray-2 font-12 font-500">Call Type</p>
+              <div class="mb-2 font-12 font-500">{{callHistoryDetailData?.callType}}</div>
+              <p class="d-flex mb-1 text-gray-2 font-12 font-500">Canceled call or dismissed events</p>
+              <select class="form-control form-control-sm form-select" aria-label="Default select example"   >
+                <option *ngFor="let item of callHistoryDetailData?.dismissedEventOptions" [value]="item.id">{{item.name}}</option>
+                <option>{{callHistoryDetailData?.dismissedEvent}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="line-divider d-flex gap-3 my-3 text-gray-2 font-12">Activity & Notes</p>
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="horizontal-mat-tab" (selectedIndexChange)="selectedIndexChange($event)">
+        <mat-tab label="Activity">
+          <div class="activity-list"*ngFor="let activity of callhistoryClientActivityLogs">
+            <p>{{activity.activity}}</p>
+            <span class="text-gray-2">{{activity?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+          </div>
+        </mat-tab>
+        <mat-tab label="Notes" class="font-16 font-500">
+          <div class="d-flex align-items-center mt-3">
+            <input type="text" class="form-control form-control-sm flex-1" [(ngModel)]="addNotes">
+            <button class="btn py-1 btn-primary minH-30 ms-2" (click)="addCallHistoryNote(callHistoryDetailData)">+ Add</button>
+          </div>
+          <div *ngIf="callHistoryNotes?.length">
+            <div class="activity-list" *ngFor="let note of callHistoryNotes">
+              <p>{{note.note}}</p>
+              <span class="text-gray-2">{{note?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+            </div>
+          </div>
+          <div class="my-3" *ngIf="!callHistoryNotes?.length">
+            <span> There is no notes for this call. </span>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div style="display: none;">
+    <app-print-call-history-side-bar  *ngIf="callHistoryDetailData" [callHistoryDetailData]="callHistoryDetailData"  [callHistoryNotes]="callHistoryNotes"   [callhistoryClientActivityLogs]="callhistoryClientActivityLogs" id="printDetailsId" ></app-print-call-history-side-bar>
+  </div>

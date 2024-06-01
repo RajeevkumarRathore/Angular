@@ -1,0 +1,77 @@
+    <app-dialog [title]="title" [actions]=" data.isOpenPcr == true ?
+    [{ text: 'Reminder', buttonSize: 'large', buttonStyle: 'accent'},{ text: 'Close', buttonSize: 'extra-large', spin: spin,}] :
+    [{ text: 'Close', buttonSize: 'extra-large', spin: spin}]" (close)="dialogRef.close()" (action)="action($event)">
+  <div class="pcr-popup position-relative">
+    <!-- <div class="pcr-popup_title text-center mb-4">{{title}}</div> -->
+    <div class="pcr-popup-number text-center font-16">{{data.data.Member}}</div>
+    <div class="pcr-popup_record">
+        <div class="heading-list column mt-4 d-flex justify-content-between gap-3">
+            <div class="heading-list_name column-width_30">Date & Time</div>
+            <div class="heading-list_name column-width_30">CAD Number</div>
+            <div class="heading-list_name column-width_50">Call Type</div>
+        </div>
+        <div class="pcr-popup_record-data"  *ngFor="let a of pcrData">
+            <div class="data-listing column d-flex justify-content-between  gap-3">
+                <div class="data-info column-width_30" >
+                    <p class="font-12">{{a.date}}</p>
+                    <span class="text-gray-2 font-10">{{a.time}}</span>
+                </div>
+                <div class="data-info column-width_30">
+                    <p class="mb-1 font-12">{{a.CadNumber}}</p>
+                    <div class="font-14">
+                        <span class="members">{{a.BadgeNumber}}</span>
+                    </div>
+                </div>
+                <div class="data-info column-width_50">
+                    <div class="type-info d-flex justify-content-between gap-2">
+                        <div>
+                            <p class="font-12">{{a.CallType}}</p>
+                            <span class="text-gray-2 font-10">{{a.Address}}</span>
+                        </div>
+                        <div *ngIf="!showButton">
+                          <button class="btn btn-md btn-primary-light" (click)="approvePcr()">Approve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="pcr-popup_btn d-flex justify-content-between mt-4">
+        <button  *ngIf="showButton" class="d-flex gap-2 px-3 btn align-items-center btn-lg btn-reminder bg-red-light text-red-1">
+            <svg class="me-1" width="13.5" height="15.5">
+                <use xlink:href="assets/images/sprite-icons.svg#bell-icon"></use>
+            </svg>
+            Reminder
+        </button>
+        <button class="btn btn-lg text-white bg-primary" (click)="close()">Close</button>
+    </div> -->
+    <div class="footer-message position-absolute d-flex justify-content-between gap-3 d-none">
+        <div class="footer-message-box">
+            <div class="box-header mb-3 d-flex justify-content-between">
+                <p class="text-black-2">Message</p>
+                <span>
+                    <svg class="me-1 text-primary-dark" width="13.5" height="15.5">
+                        <use xlink:href="assets/images/sprite-icons.svg#edit-icon"></use>
+                    </svg>
+                </span>
+            </div>
+            <p class="font-12 text-black-2">Hi! KY65 this is reminder that you have 10 open PCRs</p>
+        </div>
+        <div class="footer-message-box " >
+            <div class="box-header mb-3 d-flex justify-content-between">
+                <p class="text-black-2">Message</p>
+                <span>
+                    <svg class="me-1" width="9.205" height="9.205">
+                        <use xlink:href="assets/images/sprite-icons.svg#close-red-icon"></use>
+                    </svg>
+                    <svg class="me-1" width="12.053" height="9.205">
+                        <use xlink:href="assets/images/sprite-icons.svg#success-tick-icon"></use>
+                    </svg>
+                </span>
+            </div>
+            <textarea class="font-12 radius4 w-100 p-1 px-2 text-black-2">Hi! KY65 this is reminder that you have 10 open PCRs</textarea>
+        </div>
+    </div>
+</div>
+</app-dialog>

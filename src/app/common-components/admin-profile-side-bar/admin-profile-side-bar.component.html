@@ -1,0 +1,61 @@
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3 class="sidebar-header_title font-500">
+            User Profile
+        </h3>
+        <button (click)="close()" class="btn btn-xs btn-action rounded-circle minW-25">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+    <div class="sidebar-body">
+        <div class="user-info-content">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                    <div class="symbol-label"><i class="fa fa-user fa-3x text-white"></i></div>
+                    <div class="d-flex flex-column">
+                        <div class="navi">
+                            <a  class="navi-item d-flex flex-column font-13">
+                                <span class="navi-link p-0">
+                                    <span class="navi-text text-hover-primary">{{userInfo.userName + ' - ' + userInfo.userFullName}} </span>
+                                </span>
+                                <span class="navi-link p-0">
+                                    <span class="navi-text text-muted text-hover-primary">{{userInfo.eMail}}</span>
+                                </span>
+                                <span class="navi-link p-0">
+                                    <span class="navi-text text-muted text-hover-primary">{{userInfo.phone}}</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="btn btn-xs btn-primary rounded-pill w-130">Monitor</div>
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-light-danger font-500 px-2"  (click)="signOut()"><i class="fa fa-sign-out-alt me-2"></i>Sign Out</button>
+            </div>
+        </div>
+        <div class="d-flex flex-column w-100 login-user-content">
+            <div class="border-bottom border-light-dark pb-3 mb-3">
+                <span class="font-500 font-13">
+                    Other logged-in users
+                </span>
+            </div>
+            <div class="d-flex flex-column">
+                <div *ngIf="userData?.length" class="d-flex justify-content-between gap-2 flex-wrap align-items-center mb-3">
+                    <div *ngFor="let data of userData" class="d-flex justify-content-start w-100 align-items-center">
+                        <div class="symbol-label"><i class="fa fa-user fa-sm text-white"></i></div>
+                        <div class="d-flex justify-content-start ms-2">
+                            <span class="text-hover-primary symbol-title text-truncate">{{data.username}}</span>
+                        </div>
+                        <div class="d-flex justify-content-start ms-3">
+                            <div class="btn btn-xs btn-primary w-130 rounded-pill">
+                                Monitor
+                            </div>
+                        </div>
+                        <div class="w-150 text-end btn-light-danger radius8 ms-auto py-1 px-2" (click)="logoutUser(data)"><i class="fa fa-sign-out-alt"></i></div>
+                    </div>
+                    <button class="btn btn-xs btn-light-danger ms-auto mt-2 font-500 px-2" (click)="logoutUser(userData)">Log Out All Users<i class="fa fa-sign-out-alt ms-2"></i></button>
+                </div>
+                <div class="font-13" *ngIf="!userData?.length">No logged in user exists</div>
+            </div>
+        </div>
+    </div>
+</div>

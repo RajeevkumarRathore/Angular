@@ -1,0 +1,134 @@
+<div class="inner-wrapper">
+  <div class="task-calendar position-relative">
+    <div class="d-flex align-items-center mb-2">
+      <h2 class="text-white font-20">Calendar</h2>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <div class="mat-checkbox mat-checkbox-sm bg-white py-1 px-2">
+          <mat-checkbox (change)="showOptions($event)" [checked]="checked" >Previous Day</mat-checkbox>
+        </div>
+        <button class="btn btn-sm btn-outline-white" >Expand</button>
+        <button class="btn btn-sm btn-outline-white" >Collapse</button>
+        <button class="btn btn-sm btn-outline-white" (click)="printCalendar()">Print</button>
+      </div>
+    </div>
+    <div class="row">
+     <div class="col-auto position-relative flex-1">
+      <div class="custom-calendar" id="printId">
+        <div class="tab-call_details">
+          <app-horizontal-tabs  [activeTab]="activeTab" (actionEvent)="tabClicked($event)"[tabs]="['Dispatch', 'Night Unit']"></app-horizontal-tabs>
+        </div>
+          <div class="calender-actions">
+            <div class="shiftScheduleSearchMembers" *ngIf="currentTab === 'Night Unit'">
+              <ng-select class="ng-select-control ng-select-xl" appendTo="body" placeholder="Search members" [selectOnTab]="true"
+              panelClass="mat-select-option" (change)="selectBadgeNumber($event)">
+            <ng-option *ngFor="let item of emsMembers" [value]="item.userId">{{item.badgeNumber}}</ng-option>
+            </ng-select>
+            <label class="text-primary font-weight-bolder mt-1 font-12" *ngIf="nextShiftDate != ''">{{nextShiftDate}}</label>
+              </div>
+            <button class="btn btn-primary-light rounded-pill" (click)="onTodayButtonClick()">Today</button>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-md btn-primary"  [ngClass]="month == true ? 'active' : ''" (click)="dayGridMonth()">Month</button>
+                <button class="btn btn-md btn-primary"  [ngClass]="week == true ? 'active' : ''"  (click)="timeGridWeek()">Week</button>
+                <button class="btn btn-md btn-primary"  [ngClass]="day == true ? 'active' : ''"  (click)="timeGridDay()">Day</button>
+            </div>
+          </div>
+
+          <full-calendar #calendarEl [options]="calendarOptions"   (click)="nextPrevTitle($event)" >
+            <ng-template #eventContent let-arg>
+              <div class="calender-title" *ngIf="arg.event.title">
+                {{ arg.event.title }}
+              </div>
+              <div  [ngClass]="parentElemContainer.includes(arg.event.extendedProps.shiftScheduleTakeId) ? 'schedule-container' : ''">
+               <div class="day-inner-box " [ngClass]="parentElem.includes(arg.event.extendedProps.shiftScheduleTakeId) ? 'schedule-container' : ''">
+                <span class="time-range" [ngClass]="(week == true || day == true) ? 'text-uppercase' : ''">{{arg.event.extendedProps.editableField}}</span>
+                <ng-container *ngIf="arg.event.extendedProps.badgeNumber">
+                  <span class="badge-number">{{arg.event.extendedProps.badgeNumber}}</span>
+                  <div class="d-flex align-items-center gap-1">
+                    <div class="action-btn edit-btn" (click)="openEditScheduleDialog(getShiftSchedulePlanDataResponse,arg.event.extendedProps)">
+                      <i class="fa fa-pen"></i>
+                    </div>
+                    <div class="action-btn delete-btn" (click)="deleteShiftScheduleFromWeb(getShiftScheduleTakeDataAdminResponse,arg.event.extendedProps)">
+                      <i class="fa fa-trash-alt"></i>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!arg.event.extendedProps.badgeNumber && !arg.event.title">
+                  <button class="btn btn-xxs btn-primary rounded-pill ms-auto py-0" (click)="openEditScheduleDialog(getShiftSchedulePlanDataResponse, arg.event.extendedProps)">Set</button>
+                </ng-container>
+               </div>
+              </div>
+            </ng-template>
+          </full-calendar>
+      </div>
+      </div>
+      <div class="col-auto position-relative">
+        <div class="shedule-sidebar position-relative">
+          <div class="calendar-container">
+            <div class="navigation d-flex align-items-center justify-content-between">
+              <button class="btn btn-md" (click)="onPreviousMonth()">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+
+              <button class="btn btn-md" (click)="onNextMonth()">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <mat-calendar #calendar [selected]="selectedDate"  (selectedChange)="onSelect($event)"></mat-calendar>
+          </div>
+          <div class="d-flex flex-column" style="max-height: calc(100% - 367px);">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="font-16 text-black-2">Schedule Settings</h2>
+              <button class="btn btn-md btn-border rounded-pill px-3" (click)="openAddNewDialog(null)">Add new</button>
+            </div>
+         <div class="expansion-default">
+          <mat-accordion class="example-headers-align" multi  *ngFor="let item of getShiftSchedulePlanDataResponse">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <div class="d-flex align-items-center justify-content-between expansion-header w-100 h-100" (click)="$event.stopPropagation();">
+                  <div class="font-12">
+                    {{ item.shiftScheduleName }}
+                    <span class="text-muted font-10">
+                      (
+                        <span *ngIf="item.shiftSchedulePlans && item.shiftSchedulePlans.length > 0">
+                          <ng-container *ngFor="let shift of item.shiftSchedulePlans; let last = last">
+                            {{ getAbbreviatedDayName(shift.dayOfWeekName) }}<span *ngIf="!last">,</span>
+                          </ng-container>
+                        </span>
+                      )
+                    </span>
+                  </div>
+                  <div class=" d-flex align-items-center gap-1 me-2 font-10" >
+                    <i class="fa fa-pen text-primary pointer" (click)="openAddNewDialog(item)"></i>
+                    <i class="fa fa-trash-alt text-danger pointer" (click)="softDeleteShiftSchedule(item)"></i>
+                  </div>
+                </div>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-6" *ngFor="let days of item.selectedDays">
+                  <div class="mat-checkbox mat-checkbox-sm">
+                    <mat-checkbox [(ngModel)]="days.isChecked" class="example-margin">{{days.name}}</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+
+
+          </mat-accordion>
+
+         </div>
+         <div class="text-end mt-3">
+          <button class="btn btn-lg btn-primary save-btn rounded-pill" (click)="updateShiftSchedulePlanData(getShiftSchedulePlanDataResponse)">Save
+            <span *ngIf="loading" class="spinner-border spinner-border-sm ms-2"></span>
+          </button>
+
+        </div>
+          <!-- </div> -->
+      </div>
+    </div>
+     <span class="pege-icon position-absolute" #arrowUpButton><i class="fa-solid fa-arrow-up"></i></span>
+  </div>
+</div>
+</div>
+</div>
+
+

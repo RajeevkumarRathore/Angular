@@ -1,0 +1,51 @@
+<div class="setting-details mb-3 mt-1">
+  <div class="row w-100">
+   <div class="col-4">
+     <div class="mb-3" *ngIf="settingByUserIdResponse">
+       <p class="font-12 mb-1">Is Dispatcher</p>
+       <mat-slide-toggle class="switch-toggle" [(ngModel)]="settingByUserIdResponse.isDispatcher" (click)="dispatcherUpdate(settingByUserIdResponse)"></mat-slide-toggle>
+     </div>
+     <div class="mb-3" *ngIf="settingByUserIdResponse">
+       <p class="font-12 mb-1">Is receiving phone call for night unit shift?</p>
+       <mat-slide-toggle class="switch-toggle" [(ngModel)]="settingByUserIdResponse.isReceivingPhoneCallForNUShift" (click)="receivingPhoneCallUpdate(settingByUserIdResponse)"></mat-slide-toggle>
+     </div>
+   </div>
+   <div class="col-4">
+     <div class="mb-3" *ngIf="settingByUserIdResponse">
+       <p class="font-12 mb-1">Is Bus / Engine</p>
+       <mat-slide-toggle class="switch-toggle" [(ngModel)]="settingByUserIdResponse.isBus" (click)="busUpdate(settingByUserIdResponse)"></mat-slide-toggle>
+     </div>
+     <div class="mb-3"*ngIf="settingByUserIdResponse">
+       <p class="font-12 mb-1">Expertise</p>
+       <div class="d-flex align-items-center gap-1 flex-wrap">
+        <span class="bus-border" *ngFor="let item of settingByUserIdResponse.expertisesList" >{{item.name}}</span>
+       </div>
+     </div>
+   </div>
+   <div class="col-4">
+     <div class="mb-3" *ngIf="settingByUserIdResponse">
+       <p class="font-12 mb-1">Is taking shift</p>
+       <mat-slide-toggle class="switch-toggle" [(ngModel)]="settingByUserIdResponse.isTakingShifts" (click)="takingShiftsUpdate(settingByUserIdResponse)"></mat-slide-toggle>
+     </div>
+     <div class="mb-3">
+       <p class="font-12 mb-1">File badge number</p>
+       <select class="form-select font-10" aria-label="Default select example">
+         <option selected>Select</option>
+         <option value="1">One</option>
+         <option value="2">Two</option>
+         <option value="3">Three</option>
+       </select>
+     </div>
+   </div>
+  </div>
+</div>
+<div class="d-flex flex-column gap-2">
+ <label for="" class="font-12">Expertises</label>
+ <div class="add-number w-50 d-flex gap-2">
+   <!-- <input type="text" class="form-control form-control-sm l flex-1" (keyup)="searchExpertises($event)"> -->
+   <ng-select [appendTo]="'body'" placeholder="Expertises" [multiple]="true" [(ngModel)]="selectedExpertieses">
+     <ng-option *ngFor="let item of filteredExpertises" [value]="item.id">{{item.name}}</ng-option>
+ </ng-select>
+   <button class="btn py-1 btn-primary-light" (click)="applyExpertieses(selectedExpertieses)">Apply</button>
+  </div>
+</div>

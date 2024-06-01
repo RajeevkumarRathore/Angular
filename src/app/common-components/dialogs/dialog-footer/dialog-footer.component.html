@@ -1,0 +1,13 @@
+
+<app-button
+  [buttonStyle]="action.buttonStyle"
+  [buttonSize]="action.buttonSize"
+  [buttonColor]="action.buttonColor"
+  [spin]="action.spin"
+  [isDisabled]="action.isDisabled"
+  *ngFor="let action of actions"
+  (click)="emitAction(action.text)"
+>
+  {{ action.text }}
+</app-button>
+

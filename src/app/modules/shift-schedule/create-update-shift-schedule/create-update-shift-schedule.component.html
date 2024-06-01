@@ -1,0 +1,46 @@
+<app-dialog  [title]=title (close)="close()" [actions]="[
+{text:schedule?.data ? 'Edit':'Create', buttonSize: 'extra-large',spin:spinner}]"  (action)="dialogCalendar($event)">
+  <form [formGroup]="calendarForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="control-label">Schedule name:</label>
+          <input type="text" class="form-control" placeholder="Schedule Name" id="name" autocomplete="off" formControlName="name"
+          [ngClass]="{ 'error-input': calendarForm.get('name').invalid && calendarForm.get('name').touched }">
+          <div *ngIf="calendarForm.get('name').invalid && calendarForm.get('name').touched" class="invalid-feedback d-block">
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6" *ngIf="!schedule?.data">
+          <div class="form-group">
+            <label for="name" class="control-label">Shift type:</label>
+            <ng-select class="ng-select-control ng-select-xl" appendTo="body" placeholder="Select shift type" [selectOnTab]="true"
+              panelClass="mat-select-option" formControlName="shiftTypeId" name="shiftTypeId" id="shiftTypeId">
+              <ng-option *ngFor="let item of getRequestShiftTypesResponse" [value]="item.id">{{ item.shiftTypeName }}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="control-label">Start time:</label>
+          <input type="time" class="form-control" autocomplete="off" formControlName="startTime"
+            [ngClass]="{ 'error-input': calendarForm.get('startTime').invalid && calendarForm.get('startTime').touched }">
+            <div *ngIf="calendarForm.get('startTime').invalid && calendarForm.get('startTime').touched" class="invalid-feedback d-block">
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="control-label">End time:</label>
+          <input type="time" class="form-control"
+            autocomplete="off" formControlName="endTime"
+            [ngClass]="{ 'error-input': calendarForm.get('endTime').invalid && calendarForm.get('endTime').touched }">
+            <div *ngIf="calendarForm.get('endTime').invalid && calendarForm.get('endTime').touched" class="invalid-feedback d-block">
+            </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</app-dialog>
+

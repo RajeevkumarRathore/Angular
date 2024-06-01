@@ -1,0 +1,30 @@
+<app-dialog  [title]="title"  (close)="close()" [actions]="[
+{text:'Save', buttonSize: 'extra-large' ,spin:spinner} ]"  (action)="dialogEditCalendar($event)">
+  <form [formGroup]="editSheduleForm">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="form-group">
+          <ng-select class="ng-select-control ng-select-xl" appendTo="body" placeholder="Select member for shift" [selectOnTab]="true"
+            panelClass="mat-select-option" formControlName="badgeNumber" name="badgeNumber" id="badgeNumber">
+          <ng-option *ngFor="let item of dispatcherMembers" [value]="item.userId">{{item.badgeNumber}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6" formArrayName="weekDays">
+        <div class="form-group font-12" *ngFor="let control of weekDaysArray.controls; let i = index">
+          <mat-slide-toggle [formControlName]="i" (change)="handleSlideToggleChange(i)">
+            {{ weekDaysDe[i] }}
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 d-flex align-items-center">
+        <mat-form-field class="custom-date-picker">
+          <input matInput [matDatepicker]="picker" formControlName="endDate" placeholder="Select End Date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</app-dialog>
+

@@ -1,0 +1,22 @@
+<!-- <app-dialog [title]="title" (close)="closedialog()" > -->
+    <div class="custom-dailog_wrapper"  [formGroup]="alertForm">
+        <!-- <div class="close-btn">
+            <img src="../../../assets/images/close-icon.png">
+        </div> -->
+
+        <div class="position-relative mb-2">
+            <textarea class="form-control resize-none" rows="5" placeholder="Alert messages" formControlName="message"></textarea>
+                        <img *ngIf="!isListening" src="../../../assets/images/mic.svg" class="messageSectionMicGray icon"
+                (click)="toggleSpeechRecognition()">
+            <img *ngIf="isListening" src="../../../assets/images/micred.svg" class="messageSectionMicRed icon"
+                (click)="toggleSpeechRecognition()">
+        </div>
+        <ng-select [appendTo]="'body'" placeholder="" [multiple]="true" formControlName="selectedExpertises">
+            <ng-option value="0">All Members</ng-option>
+            <ng-option *ngFor="let item of headerAlertdata" value="{{item.id}}">{{item.name}}</ng-option>
+        </ng-select>
+        <div class="text-end mt-2">
+            <button class="btn btn-xs btn-primary rounded-pill" (click)="sendSms()">SMS</button>
+        </div>
+    </div>
+<!-- </app-dialog> -->

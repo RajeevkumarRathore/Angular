@@ -1,0 +1,79 @@
+<div class="card_report side-wrapper_details side-panel" *ngIf="!isCallHistory">
+    <div class="card_report-header side-panel-header">
+      <h3 class="font-18">{{params?.memberId}}</h3>
+        <!-- <button class="btn btn-xs btn-primary me-2">Print
+          <span class="spinner-border spinner-border-sm ms-2"></span>
+        </button> -->
+        <div (click)="close()">
+          <div class="close-btn">
+            <svg width="10" height="10">
+              <use xlink:href="assets/images/sprite-icons.svg#close-icon"></use>
+            </svg>
+          </div>
+
+        </div>
+    </div>
+    <div class="report-info position-relative side-panel-body" >
+      <p class="line-divider d-flex gap-3 mb-3 text-primary font-12">Member Info</p>
+      <div class="row mb-3">
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 mb-1">Full Name</span>
+            <p class="font-12">{{params?.firstName + ' ' + params?.lastName}}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 mb-1">Status</span>
+            <p class="font-12 text-success-4"><span class="active-dot"></span>  {{params?.status}}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="basic-details">
+            <p class="font-12 text-gray-2 mb-1">Emergency</p>
+            <span class="font-10 font-500 bg-yellow radius24 text-white py-1 px-2 mt-1">{{(params?.emergencyTypeId)?.toUpperCase()}}</span>
+          </div>
+        </div>
+      </div>
+      <p class="line-divider d-flex gap-3 mb-3 text-primary font-12">Location</p>
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="basic-details">
+            <span class="font-12 text-gray-2 font-500">Locations</span>
+            <p class="font-12 font-500">{{params?.address}}</p>
+          </div>
+        </div>
+      </div>
+      <p class="line-divider d-flex gap-3 mb-3 text-primary font-12">Others</p>
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="horizontal-mat-tab" [selectedIndex]="selectedIndex" (selectedIndexChange)="selectedIndexChange($event)">
+        <mat-tab label="Contact Info">
+          <app-contact-info [params]="params"></app-contact-info>
+        </mat-tab>
+        <!-- <mat-tab label="Liecence Info">
+          <app-licence-info ></app-licence-info>
+        </mat-tab>
+        <mat-tab label="Equipments">
+          <app-member-equipments></app-member-equipments>
+        </mat-tab> -->
+        <mat-tab label="Settings">
+          <app-member-settings [params]="params"  [filterColumnsDataList]="filterColumnsDataList"></app-member-settings>
+        </mat-tab>
+        <mat-tab label="Call History">
+          <div *ngIf="loading" class="loading-spinner">
+            <div id="loader">
+              <div l a></div><div l b></div><div l c></div><div l d></div><div l e></div><div l f></div><div l g></div><div l h></div></div>      <!-- <mat-progress-spinner class="mat-spiner" mode="indeterminate"></mat-progress-spinner> -->
+          </div>
+          <app-member-call-history [params]="params" [callHistoryList]="callHistoryList"></app-member-call-history>
+        </mat-tab>
+        <mat-tab label="Mapped Radios">
+          <app-member-mapped-radios [params]="params" ></app-member-mapped-radios>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="side-panel-footer">
+      <!-- <button class="btn btn-primary btn-lg px-4">Save</button> -->
+    </div>
+  </div>
+  <div *ngIf="isCallHistory" >
+    <app-member-call-history-side-bar [memberCallHistoryDetail]="memberCallHistoryDetail"></app-member-call-history-side-bar>
+  </div>

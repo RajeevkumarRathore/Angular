@@ -1,0 +1,24 @@
+<!-- <app-dialog [title]="title" (close)="closedialog()" > -->
+    <!-- <div class="close-btn mb-0 p-2" (click)="closeMenu()">
+        <img src="../../../assets/images/close-icon.png">
+    </div> -->
+    <div class="custom-dailog_wrapper" (click)="$event.stopPropagation()">
+
+
+        <div class="notifications">
+            <div class="notifications-header font-10 font-500 text-gray-3 mb-3">{{dispatchDetail?.length}} Books</div>
+            <div *ngFor="let item of dispatchDetail" class="notifications-body">
+                <ul class="notifications-body_list">
+                    <li class="notifications-body_list--item d-flex align-items-center">
+                        <div class="list-summary d-flex flex-column">
+                            <small class="font-500">{{item?.header}}</small>
+                            <small class="text-muted font-500">{{item?.description}}</small>
+                        </div>
+                        <button class="btn btn-xs btn-primary rounded-pill ms-auto minW-90"
+                            (click)="viewPdf(item)">View</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!-- </app-dialog> -->

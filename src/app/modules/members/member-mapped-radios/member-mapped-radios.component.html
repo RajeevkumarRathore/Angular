@@ -1,0 +1,12 @@
+<div class="mapped-list">
+  <label for="" class="mb-2 text-gray-3 font-12">Mapped id</label>
+  <button class="btn btn-border btn-sm rounded-pill ms-2 font-12 font-500" (click)="addMappedRadio()">+ Add new</button>
+  <div class="mapped-list-box d-flex justify-content-between align-items-center border-top border-bottom" *ngFor="let item of mappedRadiosList">
+     <span class="font-12">{{item.audioFrom}}</span>
+     <span class="pointer" (click)="deleteMappedRadio(item)">
+       <svg width="12.5" height="15.3">
+       <use xlink:href="assets/images/sprite-icons.svg#crose-delete-icon"></use>
+     </svg>
+   </span>
+  </div>
+</div>

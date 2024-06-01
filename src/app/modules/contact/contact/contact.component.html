@@ -1,0 +1,145 @@
+<div class="inner-wrapper">
+    <div class="inner-wrapper_body">
+        <div class="row h-100">
+            <div class="col-auto col-flex">
+              <h3 class="title font-20 font-500 mb-2 text-white">Contacts</h3>
+                <!-- <div class="tab_buttons " >
+                  <app-horizontal-tabs (actionEvent)="tabClicked($event)" [tabs]="['Contacts']"
+                    [activeTab]="activeTab"></app-horizontal-tabs>
+
+
+              </div> -->
+              <!-- <h2 class="mb-2 font-20">Contacts</h2> -->
+              <!-- <div class="tab_buttons">
+                <app-horizontal-tabs (actionEvent)="tabClicked($event)" [tabs]="['Contacts', 'Sync History']"
+                  [activeTab]="activeTab"></app-horizontal-tabs>
+              </div> -->
+              <app-grid-wrapper
+              [columnDefs]="columnDefs"
+              [gridOptions]="gridOptions"
+              [module]="'Contacts'"
+              (addNewMember)="addUpdateContact()"
+              (searchText)="searchContact($event)"
+              ></app-grid-wrapper>
+            </div>
+            <div class="col-auto" >
+              <div class="contact-history h-100" >
+                  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                      class="horizontal-mat-tab horizontal-mat-tab-dark">
+                      <mat-tab label="Details" >
+                          <div class="row w-100" *ngIf="selectedRow != null">
+                              <div class="col-6">
+                                  <div class="row">
+                                      <div class="col-12">
+                                          <div class="form-group" >
+                                              <label for="firstname" class="mb-1">First name</label>
+                                              <p>{{selectedRow?.firstName}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="col-12">
+                                          <div class="form-group">
+                                              <label for="firstname" class="mb-1">Last name</label>
+                                              <p>{{selectedRow?.lastName}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <!-- <div class="form-group contact-img">
+                                      <label for="firstname" class="mb-1">Image</label>
+                                      <div class="contact-img-box position-relative d-flex align-items-center justify-content-center">
+                                          <svg width="34.88" height="34.88">
+                                              <use xlink:href="assets/images/sprite-icons.svg#contact-user-icon"></use>
+                                          </svg>
+                                          <label title="Choose Image" class="contact-file position-absolute d-flex align-items-center justify-content-center">
+                                              <svg width="7.26" height="6.22" class="profile-button-edit text-white">
+                                                  <use  xlink:href="assets/images/sprite-icons.svg#camra-icon"></use>
+                                              </svg>
+                                              <input type="file" name="profileImagePath" id="profileImagePath" class="d-none">
+                                          </label>
+                                      </div>
+                                  </div> -->
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Location</label>
+                                      <p>{{selectedRow?.address}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Home</label>
+                                      <p>{{selectedRow?.home}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Work 1</label>
+                                      <p>{{selectedRow?.work1}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Work 2</label>
+                                      <p>{{selectedRow?.work2}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Mobile 1</label>
+                                      <p>{{selectedRow?.mobile1}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Mobile 2</label>
+                                      <p>{{selectedRow?.mobile2}}</p>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="form-group">
+                                      <label for="firstname" class="mb-1">Other</label>
+                                      <p>{{selectedRow?.other}}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </mat-tab>
+                      <!-- <mat-tab label="Call History">Call History</mat-tab> -->
+                  </mat-tab-group>
+                  <div class="pages flex-column" *ngIf="selectedRow != null">
+                    <button class="btn btn-border btn-md radius24" (click)="addUpdateContact(selectedRow)">
+                      <span class="border-0"><svg width="11.88" height="11.88">
+                        <use xlink:href="assets/images/sprite-icons.svg#edit-icon"></use>
+                      </svg></span>
+                      edit
+                    </button>
+                    <div class="d-flex gap-2">
+                      <span class="page-down d-flex align-items-center justify-content-center" (click)="goToNextOrPreviousRecord()">
+                        <svg width="11.88" height="11.88">
+                          <use xlink:href="assets/images/sprite-icons.svg#privious-arrow-icon"></use>
+                        </svg>
+                      </span>
+                      <span class="page-up d-flex align-items-center justify-content-center" (click)="goToNextOrPreviousRecord(true)">
+                        <svg width="11.88" height="11.88">
+                          <use xlink:href="assets/images/sprite-icons.svg#next-arrow-icon"></use>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- <div class="pages">
+                      <span class="page-down d-flex align-items-center justify-content-center">
+                          <svg width="11.88" height="11.88">
+                              <use xlink:href="assets/images/sprite-icons.svg#privious-arrow-icon"></use>
+                          </svg>
+                      </span>
+                      <span class="page-up d-flex align-items-center justify-content-center">
+                          <svg width="11.88" height="11.88">
+                              <use xlink:href="assets/images/sprite-icons.svg#next-arrow-icon"></use>
+                          </svg>
+                      </span>
+                  </div> -->
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

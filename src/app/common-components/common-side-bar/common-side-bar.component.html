@@ -1,0 +1,23 @@
+<!-- main header Menu-->
+    <div class="side-bar">
+        <div class="side-bar-nav" >
+          <ul class="side-bar-nav-list py-3" >
+            <li class="menu-item" *ngFor="let item of menuRoutes">
+                <a class="menu-item-link pointer" [ngClass]="item.name == 'pointer'? 'active': '' " [routerLink]="[item.route]">
+                    <span class="list-icon " [ngClass]="item.name == 'pointer'? 'active': '' " *ngIf="item.icon">
+                        <svg width="23" height="23">
+                            <use [attr.xlink:href]="item.icon"></use>
+                        </svg>
+                    </span>
+                    <span class="list-icon" *ngIf="item.class">
+                      <i [ngClass]="item.class"></i>
+                  </span>
+                    <span class="menu-text" [ngClass]="item.name == 'pointer'? 'active': '' ">{{item.name}}</span>
+                </a>
+            </li>
+
+          </ul>
+        </div>
+    </div>
+    <!-- main header Menu--End-->
+

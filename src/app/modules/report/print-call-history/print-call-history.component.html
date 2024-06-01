@@ -1,0 +1,198 @@
+<div class="print-container h-100">
+  <div class="call-history">
+    <div class="print-logo text-center">
+      <img src="assets/images/logo.png" alt="">
+    </div>
+    <h2 class="mb-2 pb-1 title">General Info</h2>
+    <div class="call-history_box">
+      <div class="call-history_box-header">
+        <div class="call-history_box-info mb-3 d-flex align-items-center justify-content-between">
+          <div class="info-report">
+            <label class="text-gray" for="unit">Unit Name :</label>
+            <span class="ms-2">{{
+              selectedRow?.memberFirstName
+              ? selectedRow?.memberFirstName +
+              " " +
+              selectedRow?.memberLastName
+              : ""
+              }}</span>
+          </div>
+          <div class="info-report">
+            <label class="text-gray" for="unit">Badge Number :</label>
+            <span class="ms-2">{{ selectedRow?.badge_number }}</span>
+          </div>
+          <div class="info-report">
+            <label class="text-gray" for="unit">Date Range :</label>
+            <span class="ms-2">{{startDate | date : "d/M/yy" }} -
+              {{
+              (endDate ? endDate :startDate) | date : "d/M/yy"
+              }}</span>
+          </div>
+        </div>
+        <div class="call-history_box-data report-data mb-3 d-flex">
+          <div class="total-lable text-gray">Total <span class="ms-3">||</span></div>
+          <div class="lable-report">
+            <span>TR-Hospital :</span><span>{{ selectedRow?.transport }}</span>
+          </div>
+          <div class="lable-report">
+            <span>NU’s:</span><span class="ms-1">{{ selectedRow?.nu }}</span>
+          </div>
+          <div class="lable-report">
+            <span>Night Calls:</span><span class="ms-1">{{ selectedRow?.nightCalls }}</span>
+          </div>
+          <div class="lable-report">
+            <span>Scene Only:</span><span class="ms-1">{{ selectedRow?.toScene }}</span>
+          </div>
+          <div class="lable-report">
+            <span>Day Calls:</span><span class="ms-1">{{ selectedRow?.dayCalls }}</span>
+          </div>
+          <div class="lable-report">
+            <span>Total:</span><span class="ms-1">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="call-history_box-report">
+      <h2 class="mb-2 title">Call History</h2>
+      <div class="report-list d-flex justify-content-between flex-column"
+        *ngFor="let item of callHistoryDetails">
+        <div class="d-flex justify-content-between gap-2">
+          <div class="report-list_address">
+            <p> {{ item.cadNumber }}</p>
+            <p>{{ item.address }}</p>
+          </div>
+          <div class="address-info">
+            <div class="buses d-flex  justify-content-end align-items-start gap-1 flex-column">
+              <div class="d-flex flex-wrap gap-1 justify-content-end" *ngIf="item?.allOtherMembers != null && item?.allOtherMembers != ''">
+                <span class="buses_label">BLS</span>
+                <span class="buses_number pointer" *ngFor="let data of item.allOtherMembers">
+                  {{data}}
+                </span>
+              </div>
+              <div class="d-flex flex-wrap gap-1 justify-content-end" *ngIf="item?.medics != null && item?.medics != ''">
+                <span class="buses_label">ALS</span>
+                <span class="buses_number pointer" *ngFor="let data of item.medics">
+                  {{data}}
+                </span>
+              </div>
+                <div class="d-flex flex-wrap gap-1 justify-content-end" *ngIf="item?.drivers != null && item?.drivers != ''">
+                  <span class="buses_label">Driver</span>
+                  <span class="buses_number pointer" *ngFor="let data of item.drivers">
+                    {{data}}
+                  </span>
+                </div>
+                <div class="d-flex flex-wrap gap-1 justify-content-end" *ngIf="item?.buses != null && item?.buses != ''">
+                  <span class="buses_label">BUS</span>
+                  <span class="buses_number pointer" *ngFor="let data of item.buses">
+                    {{data}}
+                  </span>
+                </div>
+            </div>
+            <!-- <div class="buses d-flex align-items-center gap-1">
+                <span class="buses_number" *ngFor="let units of item?.units"> {{ units }}</span>
+              </div> -->
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="font-10">
+            <span class="font-10 text-gray-2">{{ item.createdDate | date : "d MMMM 'at' h:mm a" }}</span>
+          </div>
+          <div class="emergency-type text-end mt-1 font-10">
+            <span class="text-gray-2 me-2">Call Type:</span><span>{{ item.callType }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Wrapper -->
+<!-- <div class="print-container">
+    <div class="print-info d-flex">
+        <div class="print-info-left">
+            <div class="logo text-center">
+                <img src="assets/images/logo.png" alt="">
+            </div>
+            <label class="print_label">General Info</label>
+            <label class="print_label">Call History</label>
+
+        </div>
+        <div class="call-history_box" id="printId">
+            <div *ngIf="selectedRow">
+              <div class="call-history_box-info mb-3 d-flex align-items-center justify-content-between">
+                <div class="info-report">
+                  <label for="unit">Unit Name :</label>
+                  <span class="ms-2">{{
+                    selectedRow?.memberFirstName
+                    ? selectedRow?.memberFirstName +
+                    " " +
+                    selectedRow?.memberLastName
+                    : ""
+                    }}</span>
+                </div>
+                <div class="info-report">
+                  <label for="unit">Badge Number :</label>
+                  <span class="ms-2">{{ selectedRow?.badge_number }}</span>
+                </div>
+                <div class="info-report">
+                    <label for="unit">Date Range :</label>
+                    <span class="ms-2">{{startDate | date : "d/M/yy" }} -
+                      {{
+                      (endDate ? endDate :startDate) | date : "d/M/yy"
+                      }}</span>
+                  </div>
+              </div>
+              <div class="call-history_box-report">
+                <div class="report-data mb-3 d-flex">
+                  <div class="total-lable">Total</div>
+                  <div class="lable-report">
+                    <span>TR-Hospital :</span><span>{{ selectedRow?.transport }}</span>
+                  </div>
+                  <div class="lable-report">
+                    <span>NU’s:</span><span class="ms-2">{{ selectedRow?.nu }}</span>
+                  </div>
+                  <div class="lable-report">
+                    <span>Night Calls:</span><span class="ms-2">{{ selectedRow?.nightCalls }}</span>
+                  </div>
+                  <div class="lable-report">
+                    <span>Scene Only:</span><span class="ms-2">{{ selectedRow?.toScene }}</span>
+                  </div>
+                  <div class="lable-report">
+                    <span>Day Calls:</span><span class="ms-2">{{ selectedRow?.dayCalls }}</span>
+                  </div>
+                  <div class="lable-report">
+                    <span>Total:</span><span class="ms-2">0</span>
+                  </div>
+                </div>
+                <div class="report-list d-flex justify-content-between" *ngFor="let item of callHistoryDetails">
+                  <div>
+                    <div>
+                      {{ item.cadNumber }}
+                    </div>
+                    <div class="report-list_address">
+                      {{ item.address }}
+                      <div>
+                        {{ item.createdDate | date : "d MMMM 'at' h:mm a" }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="address-info">
+                    <div class="buses d-flex align-items-center gap-1">
+                      <span
+                        *ngFor="let units of item?.units"
+                        class="buses_number"
+                      >
+                        {{ units }}
+                      </span>
+                    </div>
+                    <div class="d-flex gap-1 align-items-center justify-content-end">
+                      <span class="text-gray-2">Call Type : </span><span>  {{ item.callType }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+</div> -->
+<!-- //Wrapper -->

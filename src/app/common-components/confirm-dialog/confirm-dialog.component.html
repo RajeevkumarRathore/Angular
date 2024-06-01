@@ -1,0 +1,9 @@
+<app-dialog
+  [title]="data.title"
+  [actions]="actions"
+  [hideCloser]="data.disableClose"
+  (action)="close($event)"
+  (close)="close()"
+>
+  <div class="confirm" [innerHTML]="data.message"></div>
+</app-dialog>

@@ -1,0 +1,49 @@
+<app-dialog  [title]=title  (close)="close()" [actions]="[
+{text:'Close', buttonSize: 'extra-large', buttonStyle: 'dark'}, {text: 'Save', buttonSize: 'extra-large',},]"  (action)="action($event)">
+<form [formGroup]="setttingForm">
+<div class="row align-items-center">
+    <div class="col-lg-4">
+        <label class="control-label">Day Calls</label>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            <material-timepicker class="custom-timepicker" color="primary" [userTime]="dayCallFromtime" (change)="onChangeHour($event,'dayCallFromtime')"
+                    appearance="outline" [disabled]="true">
+                    </material-timepicker>
+            <!-- <input formControlName="dayCallFromtime" type="time" name="time" class="form-control"> -->
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <material-timepicker class="custom-timepicker" color="primary" [userTime]="dayCallTotime" (change)="onChangeHour($event,'dayCallTotime')"
+                    appearance="outline" [disabled]="true">
+                    </material-timepicker>
+            <!-- <input  type="time"  name="time" class="form-control"  formControlName="dayCallTotime"> -->
+        </div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col-lg-4">
+        <label class="control-label">Night Calls</label>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            <material-timepicker class="custom-timepicker" color="primary" [userTime]="nightCallFromtime" (change)="onChangeHour($event,'nightCallFromtime')"
+                    appearance="outline" [disabled]="true">
+                    </material-timepicker>
+            <!-- <input type="time"  name="time"  formControlName="nightCallFromtime"  class="form-control"> -->
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <material-timepicker class="custom-timepicker" color="primary" [userTime]="nightCallTotime" (change)="onChangeHour($event,'nightCallTotime')"
+                    appearance="outline" [disabled]="true">
+                    </material-timepicker>
+            <!-- <input   type="time"  name="time" formControlName="nightCallTotime"  class="form-control"> -->
+        </div>
+    </div>
+</div>
+</form>
+</app-dialog>

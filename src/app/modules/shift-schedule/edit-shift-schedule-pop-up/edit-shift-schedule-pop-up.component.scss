@@ -1,0 +1,16 @@
+.custom-date-picker {
+  ::ng-deep {
+    .mat-mdc-text-field-wrapper {
+      background-color: transparent;
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: transparent;
+    }
+    .mdc-line-ripple::before, .mdc-line-ripple::after {
+      display: none;
+    }
+    .mat-mdc-form-field-focus-overlay {
+      display: none;
+    }
+  }
+}

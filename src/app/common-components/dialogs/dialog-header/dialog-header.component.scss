@@ -1,0 +1,19 @@
+.dialog-header {
+  text-align: center;
+  padding: 27px 30px 4px;
+  position: relative;
+  &_title {
+      font-size: 16px;
+      color: var(--color-black-2);
+  }
+  &_closer {
+      cursor: pointer;
+      color: var(--color-gray-2);
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      :hover{
+          color: var(--color-black-2);
+      }
+  }
+}

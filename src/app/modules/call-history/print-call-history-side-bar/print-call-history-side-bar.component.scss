@@ -1,0 +1,18 @@
+@import'/src/app/modules/report/print-report-detail/print-report-detail.component.scss';
+
+.card_report.print-report_details {
+    width: 794px;
+    padding: 24px;
+    margin: auto;
+    -webkit-print-color-adjust: exact !important;
+}
+.general-info {
+    background-color: #F8F8F8 !important;
+    padding: 24px 20px !important;
+}
+.form-group-row {
+    align-items: baseline;
+    &-label {
+        min-width: 124px;
+    }
+}

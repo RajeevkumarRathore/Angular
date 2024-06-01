@@ -1,0 +1,96 @@
+.authentication {
+    min-height: 100vh;
+    background: url('../../../../assets/images/login-page-banner.png') no-repeat center;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    &-form {
+        flex-basis: 50%;
+        min-width: 50%;
+        overflow: hidden;
+        min-height: 100%;
+        position: relative;
+        @media(max-width: 1400px){
+            flex-basis: 43%;
+             min-width: 43%;
+        }
+        @media(max-width: 1200px){
+            padding-left: 60px;
+        }
+        @media(max-width: 1024px){
+            flex-basis: 100%;
+			min-width: 100%;
+			margin: 0 auto;
+			padding-left: 0px;
+        }
+        &-box {
+            background: url('../../../../assets/images/banner-img2.png') no-repeat center;
+            background-size: 75% 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            .logo-sm-test {
+                width: 110px;
+                display: none;
+            }
+            @media (max-width: 1400px){
+                background-size: 120% 100%;
+            }
+            @media (max-width: 1024px){
+                background: url('../../../../assets/images/banner-image-3.png');
+                background-size: cover;
+                flex-direction: column;
+                justify-content: start;
+                padding: 24px;
+                grid-gap: 24px;
+                .logo-sm-test {
+                    display: block;
+                }
+            }
+            @media (max-width: 990px) {
+                        min-height: 780px;
+                        padding-bottom: 100px;
+                    }
+            .authentication_login-form {
+                background: url('../../../../assets/images/lock.png') no-repeat center;
+                padding: 260px 62px 34px;
+                min-width: 354px;
+                max-width: 354px;
+                @media(max-width: 1200px){
+                       background-size: 67% 100%;
+                       padding: 181px 42px 20px;
+						min-width: 320px;
+                        max-width: 320px;
+						background-size: contain;
+                }
+                .form-group {
+                    margin-bottom: 12px !important;
+                    .form-control {
+                        background: #f0f0f0;
+                    }
+                }
+                .btn {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+    .developed-by {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-gap: 10px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0px);
+        bottom: 22px;
+        .login-footer {
+            padding: 17px 32px;
+            background: #fff;
+            border-radius: 30px;
+        }
+    }
+}
+

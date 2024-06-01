@@ -1,0 +1,8 @@
+<div
+  class="tab"
+  [ngClass]="{ 'tab--active': tab == activeTab }"
+  *ngFor="let tab of tabs"
+  (click)="actionClicked(tab)"
+>
+  {{ tab }}
+</div>

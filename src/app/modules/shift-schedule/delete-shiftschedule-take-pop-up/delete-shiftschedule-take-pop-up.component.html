@@ -1,0 +1,17 @@
+<app-dialog
+  [title]="title"
+  (close)="close()"
+  [actions]="[{ text: 'Delete', buttonSize: 'large', buttonStyle: 'accent'},{ text: 'Cancel', buttonSize: 'extra-large'}]"
+  (action)="action($event)"
+>
+  <form [formGroup]="radioForm">
+    <div class="d-flex align-items-center gap-1 my-3">
+      <input type="radio" formControlName="deleteOption" value=1 id="deleteShift">
+      <label for="deleteShift">Delete <strong>{{data.badgeNumber}}</strong> only from this shift</label>
+    </div>
+    <div class="d-flex align-items-center gap-1 mb-3">
+      <input type="radio" formControlName="deleteOption" value="2" id="deleteAllShifts">
+      <label for="deleteAllShifts">Delete  <strong>{{data.badgeNumber}}</strong> from all <strong>{{data.editableField}}</strong> shifts on <strong>{{data.dayOfWeekName}}</strong></label>
+    </div>
+  </form>
+</app-dialog>

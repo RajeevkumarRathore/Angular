@@ -1,0 +1,99 @@
+<app-dialog [title]="title" [actions]="[{ text: 'Close', buttonSize: 'large', buttonStyle: 'dark'},
+{ text: this.data === undefined ? 'Create' : 'Update', buttonSize: 'extra-large'}]" (close)="close()" (action)="action($event)">
+<form [formGroup]="contactForm">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">First name</label>
+                <input type="text" class="form-control" placeholder="First name" formControlName="Given_Name">
+                <div  *ngIf="(contactForm.controls['Given_Name'].hasError('required') && contactForm.controls['Given_Name'].touched || flag.submitted)">
+                  <span class="invalid-feedback d-block" *ngIf="contactForm.controls['Given_Name'].hasError('required')">
+                    First name is required
+                  </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Last name</label>
+                <input type="Name" class="form-control" placeholder="Last name" formControlName="Family_Name">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="email" class="form-control" placeholder="Email" formControlName="E_mail_1_Value">
+                <div  *ngIf="(contactForm.controls['E_mail_1_Value'].hasError('required') && contactForm.controls['E_mail_1_Value'].touched || flag.submitted)">
+                  <span class="invalid-feedback d-block" *ngIf="contactForm.controls['E_mail_1_Value'].hasError('required')">
+                    Email is required
+                  </span>
+                  <span class="invalid-feedback d-block" *ngIf="contactForm.controls['E_mail_1_Value'].hasError('email')">
+                    Enter valid email
+                  </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Street</label>
+                <input type="email" class="form-control" placeholder="Street" formControlName="Address_1_Street">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label class="control-label">City</label>
+                <input type="email" class="form-control" placeholder="City" formControlName="Address_1_City">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label class="control-label">State</label>
+                <input type="email" class="form-control" placeholder="State" formControlName="Address_1_Region">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label class="control-label">Zip</label>
+                <input type="email" class="form-control" placeholder="Zip" formControlName="Address_1_Postal_Code">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Mobile 1</label>
+                <input type="email" class="form-control" placeholder="Mobile" formControlName="Phone_1_Value">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Mobile 2</label>
+                <input type="email" class="form-control" placeholder="Mobile" formControlName="Phone_2_Value">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Work 1</label>
+                <input type="email" class="form-control" placeholder="Work" formControlName="Phone_3_Value">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Work 2</label>
+                <input type="email" class="form-control" placeholder="Work" formControlName="Phone_4_Value">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Home</label>
+                <input type="email" class="form-control" placeholder="Home" formControlName="Phone_5_Value">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label">Other</label>
+                <input type="email" class="form-control" placeholder="Other" formControlName="Phone_6_Value">
+            </div>
+        </div>
+    </div>
+</form>
+</app-dialog>

@@ -1,0 +1,19 @@
+<div class="date-container">
+    <div class="select">
+        <div class="select_option" *ngFor="let avalableDateLabel of avalableDateLabels"
+            (click)="selectLabel(avalableDateLabel)"
+            [ngClass]="{'select_option--selected': selectedDateLabel === avalableDateLabel}">{{avalableDateLabel}}</div>
+
+        <div class="select_option" [ngClass]="{'select_option--selected': selectedDateLabel === 'custom'}">Custom</div>
+    </div>
+    <div class="custom">
+        <mat-calendar #calendar [selected]="selectedRangeValue" (selectedChange)="selectedChange($event)"
+            [maxDate]="today">
+        </mat-calendar>
+    </div>
+</div>
+<div class="filter-footer">
+    <button class="btn btn-sm btn-primary" (click)="reset()"
+        *ngIf="!dialogData.hideResetbtn">Reset</button>
+    <button class="btn btn-sm btn-primary" (click)="save()">Save</button>
+</div>

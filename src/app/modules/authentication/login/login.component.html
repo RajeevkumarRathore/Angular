@@ -1,0 +1,58 @@
+<!-- Login page -->
+<div class="authentication">
+    <div class="authentication-form ms-auto">
+        <div class="d-flex authentication-form-box">
+            <div class="logo-sm-test">
+                <img src="assets/images/logo-sm-test.png" class="img-fluid" />
+            </div>
+            <div class="authentication_login-form">
+                <!-- Login Form -->
+                <form [formGroup]="loginForm">
+                    <!-- User Field -->
+                    <div class="form-group">
+                        <label class="control-label" for="">User name</label>
+                        <input class="form-control border-0" type="text" placeholder="Enter user name"
+                            formControlName="username">
+                        <div
+                            *ngIf="(loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched || flag.submitted)">
+                            <span class="invalid-feedback d-block"
+                                *ngIf="loginForm.controls['username'].hasError('required')">Username is required</span>
+                        </div>
+                    </div>
+                    <!-- //User Field -->
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label class="control-label" for="">Password</label>
+                        <div class="password-input">
+                            <input class="form-control border-0" type="password" placeholder="Enter Password"
+                                formControlName="password">
+                            <div
+                                *ngIf="(loginForm.controls['password'].hasError('required')  && loginForm.controls['password'].touched || flag.submitted)">
+                                <span class="invalid-feedback d-block"
+                                    *ngIf="loginForm.controls['password'].hasError('required')">Password is
+                                    required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback d-block">
+                        {{errorMessage}}
+                    </div>
+                    <!-- //Password Field -->
+                    <!-- Authentication Action -->
+                    <button class="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center"
+                        (click)="login()">
+                        Login
+                        <span *ngIf="showLoader" class="spinner-border spinner-border-sm ms-2"></span> </button>
+                    <div class="text-center mt-4">
+                        <a class="font-500 font-12 pointer" [routerLink]="['/account/forgot-password']">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="developed-by">
+        <span class="text-white">DEVELOPED BY</span>
+        <a class="login-footer" href="#"><img src="https://test.hatzalah.live/assets/media/logos/data-vanced.png" class="img-fluid"></a>
+    </div>
+</div>
+<!-- //Login page -->

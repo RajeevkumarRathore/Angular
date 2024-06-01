@@ -1,0 +1,37 @@
+<!-- <app-dialog [hideCloser]="true"> -->
+    <div class="custom-dailog_wrapper">
+        <div *ngFor="let item of helpDetail" class="help-module font-13">
+            <small>{{item.badgeNumber}}</small>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="font-600"> {{item.firstname + ' ' + item.lastname}}</small>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <small>
+                    {{item.phone1}}
+                </small>
+                <div class="d-flex">
+                    <button class="btn btn-xs btn-action rounded-circle bg-hover-success minH-25 w-25px font-10"><i
+                            class="fa fa-phone"></i></button>
+                    <button class="btn btn-xs btn-action rounded-circle ms-1 bg-hover-info minH-25 w-25px font-10"
+                        (click)="getMeassage(item.phone1)"><i class="fa fa-comment-alt"></i></button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <small>
+                    {{item.phone2}}
+                </small>
+                <div class="d-flex">
+                    <button class="btn btn-xs btn-action rounded-circle bg-hover-success minH-25 w-25px font-10"><i
+                            class="fa fa-phone"></i></button>
+                    <button class="btn btn-xs btn-action rounded-circle ms-1 ms-1 bg-hover-info minH-25 w-25px font-10"
+                        (click)="getMeassage(item.phone2)"><i class="fa fa-comment-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </app-dialog> -->
+    <mat-sidenav-container class="sidebar" [ngClass]="{'hide': !messageSidePanelData}" (backdropClick)="close()">
+        <mat-sidenav #messageSidenav mode="over" position="end" class="sidebar_nav" (keydown.escape)="close()">
+            <app-message-header-pop-up *ngIf="messageSidePanelData" [searchText]="searchText"></app-message-header-pop-up>
+        </mat-sidenav>
+    </mat-sidenav-container>

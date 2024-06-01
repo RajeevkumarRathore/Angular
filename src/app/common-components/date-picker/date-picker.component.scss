@@ -1,0 +1,42 @@
+.date-container {
+    display: grid;
+    grid-template-columns: 170px 225px;
+    gap: var(--space-lg);
+    .select {
+        width: 170px;
+        border-right: 1px solid var(--color-gray-1);
+        padding: 0 24px;
+        padding-top: 25px;
+        &_option {
+            padding: var(--space-xs) var(--space-sm);
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 13px;
+            &--selected {
+                background-color: var(--color-primary);
+                color: var(--color-white);
+            }
+            &:hover:not(.select_option--selected) {
+                background-color: var(--color-primary-light);
+            }
+        }
+    }
+    .custom {
+        width: 225px;
+        font-size: 13px;
+        :ng-deep{
+            .mat-calendar-body-selected {
+                background-color: var(--color-primary) !important;
+            }
+        }
+    }
+}
+.filter-footer {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-gray-1);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 10px;
+}

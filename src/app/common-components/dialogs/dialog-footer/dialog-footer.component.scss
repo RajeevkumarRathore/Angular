@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 30px;
+  border-top: 1px solid #DEDEDE;
+  min-height: 77px;
+}
+
+app-button:first-child{
+  flex: 1;
+  &:last-child{
+    text-align: end;
+  }
+}

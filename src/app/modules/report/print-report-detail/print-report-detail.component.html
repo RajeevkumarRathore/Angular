@@ -1,0 +1,88 @@
+<div class="card_report print-report_details" style=" page-break-inside: avoid;">
+    <div class="print-logo mb-4 text-center">
+        <img src="assets/images/logo.png" alt="" class="img-fluid">
+    </div>
+        <h3 class="font-16 font-600 mb-2 text-black">General Info</h3>
+    <div class="report-info" id="printDetailsId">
+        <div class="general-info mb-3">
+            <div class="form-group-row">
+                <label for="name" class="form-group-row-label">Full Name</label>
+                <p  class="font-12 font-500">{{membersDetails?.fullName}}</p>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Gender</label>
+                <p class="font-12 font-500">{{membersDetails?.gender}}</p>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Age</label>
+                <p  class="font-12 font-500">{{membersDetails?.age}}</p>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Phone Number</label>
+                <p  class="font-12 font-500">{{membersDetails?.callerNumber}}</p>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Location</label>
+                <p  class="font-12 font-500">{{membersDetails?.address}}</p>
+            </div>
+            <div class="form-group-row align-items-start">
+                <label for="gender" class="form-group-row-label">Members</label>
+                <div class="members-list d-flex flex-column" >
+                    <div class="members-list-row d-flex align-items-center justify-content-between mb-1" *ngFor="let item of membersDetails?.members">
+                        <p class="text-decoration-underline font-600">{{item?.badgeNumber}}</p>
+                        <div class="d-flex align-items-center gap-1">
+                          <span class="members-list-row-box" [ngClass]="item.isDriver == true ? 'active' : 'members-list-row-box' ">DR</span>
+                          <span class="members-list-row-box" [ngClass]="item.isSceneOnly == true ? 'active' : 'members-list-row-box' ">SO</span>
+                          <span class="members-list-row-box" [ngClass]="item.isTransport == true ? 'active' : 'members-list-row-box' ">TR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Type</label>
+                <span class="bg-yellow radius24 text-white py-1 px-2">{{(membersDetails?.agencySegment).toUpperCase()}}</span>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Call Type</label>
+                <span  class="font-12 font-500">{{membersDetails?.callType}}</span>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Hospital</label>
+                <span  class="font-12 font-500"></span>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Audio</label>
+                <div
+                    class="d-flex w-25 text-gray-2 py-1 px-3 align-items-center radius24 justify-content-between bg-gray-1">
+                    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-gray w-75"></div>
+                    </div>
+                    <i class="fa-solid fa-ellipsis-vertical text-black ps-1"></i>
+                </div>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Dispatcher </label>
+                <span  class="font-12 font-500">{{membersDetails?.createdBy}}</span>
+            </div>
+            <div class="form-group-row">
+                <label for="gender" class="form-group-row-label">Canceled call or dismissed events</label>
+                <span  class="font-12 font-500"></span>
+            </div>
+        </div>
+        <div class="activity-info mb-3">
+            <h2 class="text-black font-16 font-600 mb-2">Activity</h2>
+            <div class="activity-info-list"  *ngFor="let memberActivity of clientActivityLogs">
+                <p class="font-500 font-12">{{memberActivity?.activity}}</p>
+                <span class="text-gray-2 font-12">{{memberActivity?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+            </div>
+        </div>
+        <div class="note-info mb-2">
+            <h2 class="text-black font-16 font-600 mb-2">Note</h2>
+            <div class="note-info-list" *ngFor="let note of callHistoryNotes">
+              <p class="font-12 font-500">{{note.note}}</p>
+              <span class="text-gray-2 font-12">{{note?.createdDate | date : "M/d/yyyy 'at' h:mm a" }}</span>
+            </div>
+        </div>
+    </div>
+</div>

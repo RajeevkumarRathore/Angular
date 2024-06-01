@@ -1,0 +1,9 @@
+<div class="dialog-header">
+  <div class="dialog-header_title">
+    <ng-content></ng-content>
+  </div>
+  <div class="dialog-header_description" [innerHTML]="description"></div>
+  <div class="dialog-header_closer" (click)="emitClose()" *ngIf="!hideCloser">
+    <i class="fa fa-times"></i>
+  </div>
+</div>

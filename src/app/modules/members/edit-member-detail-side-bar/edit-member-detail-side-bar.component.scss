@@ -1,0 +1,193 @@
+.side-panel {
+    height: 100%;
+    &-body{
+        height: calc(100% - 127px);
+        .call-history_deatils{
+            &_members{
+                .member-list {
+                    border: 1px solid var(--color-gray-1);
+                    border-radius: 4px;
+                    display: flex;
+                    grid-gap: 2px;
+                    align-items: center;
+                    margin-bottom: 7px;
+                    padding: 6px;
+                    flex: 1;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    &_box {
+                        border: 1px solid var(--color-gray-1);
+                        padding: 2px 8px;
+                        border-radius: 4px;
+                        font-size: 10px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 2px;
+                        cursor: pointer;
+                    }
+                }
+                .member-box-column {
+                    max-height: 225px;
+                    overflow-y: auto;
+                    padding-right: 4px;
+                }
+            }
+        }
+        .active-dot {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            background-color: var(--color-success-4);
+            border-radius: 100%;
+        }
+        .table-default{
+            thead{
+                th{
+                    padding-bottom: 7px;
+                }
+            }
+            tbody{
+                tr{
+                    height: 34px !important;
+                    td{
+                        padding: 0 8px !important;
+                        &:first-child {
+                            padding-left: 0 !important;
+                        }
+                        .toggle-switch {
+                            line-height: 34px;
+                        }
+                    }
+                }
+            }
+
+        }
+        .horizontal-mat-tab{
+            height: calc(100% - 198px);
+            ::ng-deep{
+                .mat-accordion {
+                    .mat-expansion-panel{
+                        box-shadow: none;
+                        &-header{
+                            height: 61px;
+                            padding: 11px 12px;
+                            border-bottom-left-radius: 0px;
+                            border-bottom-right-radius: 0px;
+                            &.mat-expanded{
+                                background: #f5f5f5;
+                            }
+                            .mat-content {
+                                .equipments-deatils {
+                                    &-list{
+                                        grid-gap: 11px;
+                                        img {
+                                            width: 40px;
+                                            height: 40px;
+                                        }
+                                    }
+                                    .ellipse-icon {
+                                        width: 20px;
+                                        height: 20px;
+                                        line-height: 20px;
+                                        text-align: center;
+                                        border-radius: 100%;
+                                        &:hover{
+                                            background-color: var(--color-gray-5);
+                                        }
+                                    }
+                                }
+                            }
+                            .mat-expansion-indicator {
+                                position: relative;
+                                right: 50px;
+                            }
+                        }
+                        .mat-expansion-panel-content{
+                            .mat-expansion-panel-body {
+                                border: 1px solid #f5f5f5;
+                                padding: 0;
+                                &-list{
+                                    padding: 9px;
+                                    font-size: 12px;
+                                    border: 1px solid #f5f5f5;
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+        .setting-details {
+            padding-bottom: 4px;
+            border-bottom: 1px solid #E0E0E0;
+            }
+            .call_list {
+                &-box{
+                    border: 1px solid #E0E0E0;
+                    padding: 8px 11px;
+                    border-radius: 8px;
+                    margin-bottom: 8px;
+                }
+            }
+            .mapped-list{
+                height: calc(100vh - 416px);
+                &-box {
+                    padding: 7px 0px;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+    &-footer {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding: 14px 21px;
+    }
+}
+.selected {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
+}
+
+.sidePanel {
+  position: inherit;
+  &_nav {
+      width: 100%;
+  }
+}
+
+.loading-spinner {
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:60vh;
+  #loader{
+      height:50px;
+      width:50px;
+      position:relative;
+    }[l]{
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      animation:loader 0.6s linear infinite;
+    }
+    [a]{left:20px;}
+    [b]{right:5px;top:5px;animation-delay:.2s}
+    [c]{top:20px;right:0;animation-delay:.4s}
+    [d]{right:5px;bottom:5px;animation-delay:.6s}
+    [e]{left:20px;bottom:0;animation-delay:.8s}
+    [f]{left:5px;bottom:5px;animation-delay:1s}
+    [g]{top:20px;left:0;animation-delay:1.2s}
+    [h]{left:5px;top:5px;animation-delay:1.4s}
+    @keyframes loader{
+      0%{
+        background:#999898;
+      }
+      100%{
+        background:#0000;
+      }
+    }
+}

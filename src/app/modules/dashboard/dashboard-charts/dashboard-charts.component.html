@@ -1,0 +1,131 @@
+<div class="row row-gap-4">
+    <div class="col-sm-12 col-lg-8 chart-box_main">
+        <div class="row row-gap-4">
+            <div class="col-sm-6 col-lg-6 col-xl-4">
+                <div class="chart-box">
+                    <div class="chart-box_header d-flex align-items-center justify-content-between">
+                        <h2 class="title">Nature of calls</h2>
+                        <div class="d-flex justify-content-end">
+                            <app-date-component-renderer [currentDateFilter]="currentDateFilter"
+                                [natureOfCalls]="true"></app-date-component-renderer>
+                        </div>
+                    </div>
+                    <div id="callNature" class="chart-box_img">
+                        <app-doughnut-chart [id]="'callNature'" [data]="natureOfCalls"
+                            [chartColors]="natureOfCallsColor" [totalCalls]="totalNatureCalls" [innerSize]="'55%'"></app-doughnut-chart>
+                    </div>
+                    <div class="chart_results">
+                        <div class="results d-flex justify-content-between align-items-center" *ngFor="let calls of natureOfCallsList">
+                            <span class="circle-dot {{calls?.color}}_dot"></span>
+                            <span class="results_value"> {{calls.Value}}</span>
+                            <span class="font-600">{{calls.total}}</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-6 col-xl-4">
+          <div class="chart-box">
+              <div class="chart-box_header d-flex align-items-center justify-content-between">
+                  <h2 class="title">Hospital Data</h2>
+                  <app-date-component-renderer [currentDateFilter]="currentDateFilter"
+                      [hospitalData]="true"></app-date-component-renderer>
+              </div>
+              <div id="callHospital" class="chart-box_img">
+                  <app-doughnut-chart [id]="'callHospital'" [data]="hospitalData"
+                      [chartColors]="hospitalDataColor" [totalCalls]="totalHospitalCalls"  [innerSize]="'80%'"></app-doughnut-chart>
+              </div>
+              <div class="chart_results">
+                  <div class="results d-flex justify-content-between align-items-center" *ngFor="let data of hospitalDataList">
+                    <span class="circle-dot {{data?.color}}_dot"></span>
+                    <span class="results_value">
+                          {{data.Value}}
+                      </span>
+                      <span class="font-600">{{data.total}}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xl-4">
+          <div class="chart-box">
+              <div class="chart-box_header d-flex align-items-center justify-content-between">
+                  <h2 class="title">Disposition</h2>
+                  <app-date-component-renderer [currentDateFilter]="currentDateFilter"
+                      [callType]="true"></app-date-component-renderer>
+              </div>
+              <div id="callType" class="chart-box_img">
+                  <app-doughnut-chart [id]="'callType'" [data]="callType" [chartColors]="callTypeColor"
+                  [totalCalls]="totalCallType"
+                      [innerSize]="'55%'"></app-doughnut-chart>
+              </div>
+              <div class="chart_results">
+                  <div class="results d-flex justify-content-between align-items-center" *ngFor="let calls of callTypeList">
+                    <span class="circle-dot {{calls?.color}}_dot"></span>
+                    <span class="results_value">
+                          {{calls.Value}}
+                      </span>
+                      <span class="font-600">{{calls.total}}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xl-4">
+          <div class="chart-box">
+              <app-night-shifts></app-night-shifts>
+          </div>
+      </div>
+      <!-- <div class="col-sm-6 col-lg-4">
+          <div class="chart-box">
+              <div class="chart-box_header d-flex align-items-center justify-content-between">
+                  <h2 class="title">Completed PCRs VS Incomplete</h2>
+                  <app-date-component-renderer [currentDateFilter]="currentDateFilter"
+                      [completedPCRs]="true"></app-date-component-renderer>
+              </div>
+              <div id="CompletedPCRs" class="chart-box_graph d-flex flex-column justify-content-end">
+                  <app-bar-chart *ngIf="completedPCRs" [id]="'CompletedPCRs'" [data]="completedPCRs"
+                      [chartColors]="completedPCRsColor" [labels]="completedPCRsLabel"></app-bar-chart>
+              </div>
+          </div>
+      </div> -->
+      <div class="col-lg-12 col-xl-8">
+          <div class="chart-box">
+              <div class="chart-box_header d-flex align-items-center justify-content-between">
+                  <h2 class="title">Call Volume</h2>
+              </div>
+              <div class="chart-box_line-graph">
+                  <div>
+                    <div class="d-flex justify-content-end">
+                      <app-date-component-renderer [currentDateFilter]="callVolume1tDateFilter"
+                          [callVolume1]="true"></app-date-component-renderer>
+                  </div>
+                      <h2 class="mb-1 title">{{firstLineChartLabel}}</h2>
+                      <div id="CallVolume" class="graph">
+                          <app-line-chart [id]="'CallVolume'" [data]="callVolumeDetail1"
+                              [chartColors]="callVolumeDetailColor1"
+                              [labels]="callVolumeDetailLabels1"
+                           ></app-line-chart>
+                      </div>
+                  </div>
+                  <div>
+                    <div class="d-flex justify-content-end">
+                      <app-date-component-renderer [currentDateFilter]="callVolume2tDateFilter"
+                          [callVolume2]="true"></app-date-component-renderer>
+                  </div>
+                      <h2 class="mb-1 title">{{secondLineChartLabel}}</h2>
+                      <div id="CallVolumeDayBrfore" class="graph">
+                          <app-line-chart [id]="'CallVolumeDayBrfore'" [data]="callVolumeDetail2"
+                              [chartColors]="callVolumeDetailColor2"
+                              [labels]="callVolumeDetailLabels2"></app-line-chart>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="col-sm-12 col-lg-4">
+  <div class="top-listing">
+      <app-top-listing></app-top-listing>
+  </div>
+</div>
+</div>
+

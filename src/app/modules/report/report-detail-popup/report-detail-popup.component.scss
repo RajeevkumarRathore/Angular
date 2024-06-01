@@ -1,0 +1,71 @@
+.card_report {
+    -webkit-print-color-adjust: exact !important;
+    height: 100%;
+    .report-info{
+        height: calc(100% - 59px);
+        .line-divider{
+            color: var(--color-primary-dark);
+            &::before,&:after{
+                content: "";
+                flex-grow: 1;
+                height: 1px;
+                background: #d1d1d1;
+                min-width: 20px;
+                margin: auto;
+            }
+        }
+        .call-history_deatils{
+            &_members{
+                .member-list {
+                    border: 1px solid var(--color-gray-1);
+                    border-radius: 4px;
+                    display: flex;
+                    grid-gap: 2px;
+                    align-items: center;
+                    margin-bottom: 7px;
+                    padding: 6px;
+                    flex: 1;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    &_box {
+                        border: 1px solid var(--color-gray-1);
+                        padding: 2px 8px;
+                        border-radius: 4px;
+                        font-size: 10px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 2px;
+                        cursor: pointer;
+                    }
+                }
+                .member-box-column {
+                    max-height: 225px;
+                    overflow-y: auto;
+                    padding-right: 4px;
+                }
+            }
+        }
+        .horizontal-mat-tab{
+            ::ng-deep{
+                .mat-mdc-tab-body-wrapper{
+                    height: calc(100vh - 627px);
+                    min-height: 250px;
+                }
+                .activity-list {
+                    padding: 9px 0px;
+                    border-bottom: 1px solid var(--color-gray-1);
+                }
+                .add-notes {
+                    margin-top: 20px;
+                }
+            }
+
+        }
+    }
+
+}
+.selected {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
+}

@@ -1,0 +1,73 @@
+
+    <app-dialog [title]="title" (close)="close()" (action)="action($event)" [actions]="[{ text: 'Save', buttonSize: 'extra-large' || spin, spin: spin}]">
+    <form [formGroup]="notificationForm">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label">Day</label>
+                    <select class="form-control"  formControlName="dispatcherNotificationDaySelect">
+                        <option value="1">Today</option>
+                        <option value="2">Tomorrow</option>
+                    </select>
+                    <div
+                *ngIf="(notificationForm.controls['dispatcherNotificationDaySelect'].hasError('required') && notificationForm.controls['dispatcherNotificationDaySelect'].touched) || flag.submitted == true">
+                <span class="invalid-feedback d-block"
+                    *ngIf="notificationForm.controls['dispatcherNotificationDaySelect'].hasError('required')">Day can not be empty!</span>
+            </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label">Effective Until</label>
+
+                    <material-timepicker class="custom-timepicker" color="primary" [userTime]="exportTime" (change)="onChangeHour($event)"
+                    appearance="outline" >
+                    </material-timepicker>
+                    <!-- <input type="time" class="form-control"  formControlName="EffectiveUntill"> -->
+                </div>
+                <div
+                *ngIf="(notificationForm.controls['EffectiveUntill'].hasError('required') && notificationForm.controls['EffectiveUntill'].touched) || flag.submitted == true">
+                <span class="invalid-feedback d-block"
+                    *ngIf="notificationForm.controls['EffectiveUntill'].hasError('required')">Effective until can not be empty!</span>
+            </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="control-label">Notification</label>
+                    <div class="position-relative">
+                        <textarea class="form-control resize-none" rows="5" placeholder="Type notification text" formControlName="DispatchNotificationText"></textarea>
+                          <img *ngIf="!isListening" src="../../../assets/images/mic.svg" class="messageSectionMicGray icon" (click)="toggleSpeechRecognition()">
+                          <img *ngIf="isListening" src="../../../assets/images/micred.svg" class="messageSectionMicRed icon" (click)="toggleSpeechRecognition()">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search Hospitals" (input)="searchHospitals($event)" [matAutocomplete]="auto" formControlName="HospitalId" />
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option class="mat-option-override" *ngFor="let option of hospitalData"  [value]="option.hospital?.name" (onSelectionChange)="onHospitalSelection(option)">
+                            <div class="row showsku font-12">
+                                <div class="col-md-8">
+                                    <div class="name">{{option?.hospital?.name}}</div>
+                                    <div class="name">{{option?.hospital?.address}}</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="name">{{option?.hospital?.mainPhone}}</div>
+                                    <div class="name">{{option?.hospital?.erPhone}}</div>
+                                </div>
+                            </div>
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="mat-checkbox mat-checkbox-sm">
+                    <mat-checkbox  id="checkNotifyEveryone" formControlName="isNotifyEveryone">Notify Everyone
+                    </mat-checkbox>
+                  </div>
+            </div>
+
+        </div>
+    </form>
+</app-dialog>

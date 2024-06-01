@@ -1,0 +1,76 @@
+@import "@ag-grid-community/styles/ag-grid.css";
+@import "@ag-grid-community/styles/ag-theme-balham.css";
+
+.ag-theme-balham{
+    --ag-font-family: poppins;
+    --ag-border-color: transparent;
+    --ag-header-background-color:var(--color-gray-8);
+    --ag-header-foreground-color:var(--color-black);
+    --ag-font-size: 12px;
+    --ag-header-height: 56px;
+    --ag-border-color: #ddd;
+    --ag-selected-row-background-color: var(--color-primary-light);
+    --ag-odd-row-background-color: var(--color-gray-9);
+    --ag-input-focus-box-shadow: none;
+    .ag-header-cell {
+        padding: 5px 12px;
+    }
+    .ag-cell {
+        display: flex;
+        align-items: center;
+    }
+    .ag-input-field-input {
+        border-radius: 2px;
+        height: 20px;
+        background: url(../images/application-Icons/search-icon.svg) no-repeat;
+        background-position: 6px;
+        background-size: 10px;
+        background-color: var(--color-white);
+        padding-left: 20px !important;
+    }
+    .ag-cell-label-container {
+        padding: 0 !important;
+    }
+    .ag-overlay-no-rows-wrapper {
+        padding-top: 57px;
+        color: var(--color-gray-3);
+    }
+    .column-render-cell {
+          background-color: #ffa800;
+          width: 44px !important;
+          height: 24px;
+          border-radius: 24px;
+          justify-content: center;
+          margin: 10px 0px;
+          margin-left: 10px;
+          color: var(--color-white);
+          text-transform: uppercase;
+    }
+    .column-cell-red-color{
+        background-color: red;
+    }
+    .column-cell-green-color{
+      background-color: green;
+  }
+
+}
+//  grid Scroll css
+.ag-theme-balham{
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      .ag-body-horizontal-scroll {
+        height: 10px !important;
+        max-height: 10px !important;
+        min-height: 10px !important;
+    }
+    .ag-body-horizontal-scroll-viewport {
+        height: 10px !important;
+        max-height: 10px !important;
+        min-height: 10px !important;
+    }
+    .ag-center-cols-viewport {
+        height: calc(100% + 10px) !important;
+    }
+}

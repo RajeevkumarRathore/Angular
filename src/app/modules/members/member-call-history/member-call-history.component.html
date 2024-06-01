@@ -1,0 +1,40 @@
+<div class="call_list" >
+  <div *ngFor="let item of callHistoryList">
+    <div  class="call_list-box d-flex justify-content-between align-items-center" *ngIf="item.id != null">
+      <p class="d-flex flex-column font-12">
+        <span class="font-500">{{item.cadNumber}}</span>
+        <span class="text-gray-2">{{item.createdDate | date: "MM/dd/yyyy h:mm:ss a"}}</span>
+      </p>
+      <div class="buses d-flex  justify-content-end align-items-start gap-1 flex-column">
+        <div class="d-flex gap-1" *ngIf="item?.units != null && item?.units.length > 0">
+          <span class="buses_label">U: </span>
+          <div class="d-flex gap-1 flex-wrap">
+            <span class="buses_number pointer" *ngFor="let data of item.units">
+            {{data}}
+          </span>
+        </div>
+        </div>
+        <div class="d-flex gap-1" *ngIf="item?.medics != null && item?.medics.length > 0">
+          <span class="buses_label">M: </span>
+          <div class="d-flex gap-1 flex-wrap">
+            <span class="buses_number pointer" *ngFor="let data of item.medics">
+              {{data}}
+            </span>
+          </div>
+        </div>
+          <div class="d-flex gap-1" *ngIf="item?.buses != null && item?.buses.length > 0">
+            <span class="buses_label">B: </span>
+            <div class="d-flex gap-1 flex-wrap">
+              <span class="buses_number pointer" *ngFor="let data of item.buses">
+                {{data}}
+              </span>
+            </div>
+          </div>
+      </div>
+      <div>
+        <button class="btn py-1 btn-primary-light" (click)="memberCallHistory(item)">Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+

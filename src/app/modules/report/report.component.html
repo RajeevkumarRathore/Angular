@@ -1,0 +1,169 @@
+<!-- Inner wrapper reports page -->
+<div class="inner-wrapper">
+  <div class="inner-wrapper_header mb-1 d-flex justify-content-between align-items-end">
+    <h2 class="font-18 font-600 text-white d-flex justify-content-end">
+      Report
+    </h2>
+  </div>
+  <div class="inner-wrapper_body">
+    <app-header-summary [counts]="reportIcons" [module]="'Report'"></app-header-summary>
+  <div class="row h-100">
+    <div class="col-auto col-flex h-100">
+      <div class="tab_buttons">
+        <app-horizontal-tabs (actionEvent)="tabClicked($event)" [tabs]="['Members', 'By Date', 'Summary']"
+          [activeTab]="activeTab"></app-horizontal-tabs>
+      </div>
+      <app-grid-wrapper
+      [columnDefs]="columnDefs"
+      [page]="activeTab"
+      [gridOptions]="gridOptions"
+      [dateFilter]="currentDateFilter"
+      (selectedDateEmitter)="selectedDate($event)"
+      (sendsMessageToAll)="sendsMessageToAll()"
+      [allExperties]="allExperties"
+      (selectedExpertise)="getSelectedExpertise($event)"
+      (openSettingBox)="openSettingBox()"
+      (searchText)="filterReportGrids($event)"
+      [module]="'report'"
+      ></app-grid-wrapper>
+    </div>
+    <div class="col-auto h-100">
+      <div class="call-history">
+        <div class="call-history_header d-flex justify-content-between align-items-center">
+          <h2 class="font-14 text-black-2">Call History</h2>
+          <button class="btn btn-md btn-primary" (click)="printCallHistory()">
+            Print
+            <span *ngIf="loading" class="spinner-border spinner-border-sm ms-2"></span>
+          </button>
+        </div>
+        <div class="call-history_box" >
+          <div class="call-history_box-info mb-3 d-flex align-items-center justify-content-between" *ngIf="callHistoryDetails?.length > 0">
+            <div class="info-report" >
+              <label for="unit" class="text-gray-3 font-500">Unit Name :</label>
+              <span class="ms-2">{{
+                selectedRow?.memberFirstName
+                ? selectedRow?.memberFirstName +
+                " " +
+                selectedRow?.memberLastName
+                : ""
+                }}</span>
+            </div>
+            <div class="info-report">
+              <label for="unit" class="text-gray-3 font-500">Badge Number :</label>
+              <span class="ms-2">{{ selectedRow?.badge_number }}</span>
+            </div>
+            <div class="info-report">
+              <label for="unit" class="text-gray-3 font-500">From Date :</label>-
+              <span class="ms-2">
+                {{ startDate | date : "MM/dd/yyyy"}} </span>
+
+            </div>
+            <div class="info-report">
+              <label for="unit" class="text-gray-3 font-500">To Date :</label>-
+              <span class="ms-2">
+                {{
+                (endDate ? endDate : startDate) | date : "MM/dd/yyyy"
+                }}</span>
+
+            </div>
+          </div>
+          <div class="call-history_box-data report-data mb-3 d-flex" *ngIf="callHistoryDetails?.length > 0">
+            <div class="total-lable text-gray-3 font-10">Total</div>
+            <div class="lable-report">
+              <span>TR-Hospital :</span><span class=" ms-1 font-500">{{ selectedRow?.transport }}</span>
+            </div>
+            <div class="lable-report">
+              <span>NU’s:</span><span class="ms-1 font-500">{{ selectedRow?.nu }}</span>
+            </div>
+            <div class="lable-report">
+              <span>Night Calls:</span><span class="ms-1 font-500">{{ selectedRow?.nightCalls }}</span>
+            </div>
+            <div class="lable-report">
+              <span>Scene Only:</span><span class="ms-1 font-500">{{ selectedRow?.toScene }}</span>
+            </div>
+            <div class="lable-report">
+              <span>Day Calls:</span><span class="ms-1 font-500">{{ selectedRow?.dayCalls }}</span>
+            </div>
+            <div class="lable-report">
+              <span>Total:</span><span class="ms-1 font-500">0</span>
+            </div>
+          </div>
+          <div class="call-history_box-report">
+            <div class="report-list d-flex flex-column justify-content-between" *ngFor="let item of callHistoryDetails">
+              <div class="d-flex justify-content-between gap-3">
+                <div class="report-list_address">
+                  <div class="font-12 font-600">
+                    {{ item.cadNumber }}
+                  </div>
+                  <div class="font-12 font-600">
+                    {{ item.address }}
+                  </div>
+                </div>
+                <div class="address-info d-flex justify-content-between gap-2">
+                  <div class="buses d-flex flex-column">
+                    <div class="d-flex form-group-row mb-1 gap-1" *ngIf="item.allOtherMembers != null && item.allOtherMembers != ''">
+                     <span class="form-group-row-label"> BLS</span>
+                        <div class="d-flex flex-wrap gap-1">
+                          <span class="buses_number pointer" *ngFor="let data of item.allOtherMembers">
+                            {{data}}
+                          </span>
+                        </div>
+                    </div>
+                     <div class="d-flex form-group-row mb-1 gap-1" *ngIf="item.medics != null && item.medics != ''">
+                     <span class="form-group-row-label"> ALS</span>
+                      <span class="buses_number pointer" *ngFor="let data of item.medics">
+                        {{data}}
+                      </span>
+                    </div>
+                      <div class="d-flex form-group-row mb-1 gap-1" *ngIf="item.drivers != null && item.drivers != ''">
+                        <span class="form-group-row-label">Driver</span>
+                        <span class="buses_number pointer" *ngFor="let data of item.drivers">
+                         {{data}}
+                        </span>
+                      </div>
+                      <div class="d-flex form-group-row mb-1 gap-1" *ngIf="item.buses != null && item.buses != ''">
+                       <span class="form-group-row-label">BUS</span>
+                      <span  class="buses_number pointer" *ngFor="let data of item.buses">
+                        {{data}}
+                      </span>
+                    </div>
+
+                  </div>
+                  <div>
+                    <button class="btn btn-md btn-primary-light" (click)="GetCallHistoryDetail(item)">Details</button>
+                  </div>
+                </div>
+              </div>
+              <div class="text_bottom d-flex align-items-center justify-content-between font-10 mt-1">
+                <div class="text-gray-2">
+                  {{ item.createdDate | date : "MM/dd/yyyy h:mm:ss a" }}
+                </div>
+                <div class="d-flex gap-1 align-items-center justify-content-end">
+                  <span class="text-gray-2">Call Type : </span><span> {{ item.callType }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="spinner" class="loading-spinner">
+            <div id="loader">
+              <div l a></div><div l b></div><div l c></div><div l d></div><div l e></div><div l f></div><div l g></div><div l h></div></div>      <!-- <mat-progress-spinner class="mat-spiner" mode="indeterminate"></mat-progress-spinner> -->
+          </div>
+          <div class="empty-history" *ngIf="callHistoryDetails?.length == 0  && !spinner">
+            <p>Please select a member for seeing the call history</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  <mat-sidenav-container class="sidebar" [ngClass]="{'hide': !memberActivity}" (backdropClick)="close()">
+    <mat-sidenav #reportDetailNav mode="over" position="end" class="sidebar_nav" (keydown.escape)="close()">
+        <app-report-detail-popup *ngIf="memberActivity" [membersDetails]="memberActivity"></app-report-detail-popup>
+    </mat-sidenav>
+</mat-sidenav-container>
+
+  <div style="display: none;">
+    <app-print-call-history *ngIf="callHistoryDetails" [callHistoryDetails]="callHistoryDetails" id="printId" [startDate]="startDate"
+    [endDate]="endDate" [hidden]="false" [selectedRow]="selectedRow"></app-print-call-history>
+  </div>

@@ -1,0 +1,166 @@
+<div class="message-window d-flex" id="messageWindow">
+    <div class="users-list">
+        <h4>Message</h4>
+        <div class="search-user">
+            <input #selectedOption type="text" placeholder="Search member" id="chatSearch" role="presentation" autocomplete="off" (input)="searchAllChat($event.target)" [matAutocomplete]="auto" >
+            <mat-autocomplete #auto="matAutocomplete" class="search-user-result">
+                <mat-option class="mat-option-override" *ngFor="let option of searchChatData"  (onSelectionChange)="onSelectSelection(option)">
+                    <div class="row border-bottom contactsRow cursor-default m-0 py-1">
+                        <div class="col-sm-6 d-flex flex-column font-12 ps-0">
+                            <span class="contactFullName font-600">{{option?.fullName}}</span>
+                            <span>{{option?.hebrewName}}</span>
+                            <span class="contactAddress text-muted font-500 mt-auto">{{option?.address}}</span>
+                        </div>
+                        <div class="col-6 col-sm-3 py-3 py-sm-0 d-flex flex-column font-600 font-12">
+                            <span class="d-flex justify-content-start align-items-center cursor-pointer minH-18">
+                                <img src="../../../assets/images/application-Icons/smartphone.png">
+                                <span class="phnNum bria-call-and-message ms-1">
+                                    <span class="bg-light-warning"></span>{{option?.phone1}}
+                                </span>
+                            </span>
+                            <span class="d-flex justify-content-start align-items-center cursor-pointer minH-18">
+                                <img src="../../../assets/images/application-Icons/smartphone.png">
+                                <span class="phnNum bria-call-and-message ms-1">
+                                    <span class="bg-light-warning"></span>{{option?.phone2}}
+                                </span>
+                            </span>
+                            <span class="d-flex justify-content-start align-items-center cursor-pointer minH-18">
+                                <img src="../../../assets/images/application-Icons/smartphone.png">
+                                <span class="phnNum bria-call-and-message ms-1">
+                                    <span class="bg-light-warning"></span>{{option?.phone3}}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-sm-3 py-3 py-sm-0 d-flex flex-column font-600 font-12 pe-0">
+                            <span class="d-flex justify-content-start align-items-center minH-18">
+                                <img src="../../../assets/images/application-Icons/home-telephone.png">
+                                <span class="text-muted ms-1">{{option?.phone4}}</span>
+                            </span>
+                            <span class="d-flex justify-content-start align-items-center minH-18">
+                                <img src="../../../assets/images/application-Icons/home-telephone.png">
+                                <span class="text-muted ms-1">{{option?.phone5}}</span>
+                            </span>
+                            <span class="d-flex justify-content-start align-items-center minH-18">
+                                <img src="../../../assets/images/application-Icons/home.png">
+                                <span class="text-muted ms-1">{{option?.phone6}}</span>
+                            </span>
+                        </div>
+                    </div>
+                  <!-- <div class="showsku">
+                    <div class="name">{{option?.fullName}}</div>
+                    <div class="name">{{option?.hebrewName}}</div>
+                    <div class="name">{{option?.address}}</div>
+                    <div class="name">{{option?.phone1}}</div>
+                    <div class="name">{{option?.phone2}}</div>
+                    <div class="name">{{option?.phone3}}</div>
+                    <div class="name">{{option?.phone4}}</div>
+                    <div class="name">{{option?.phone5}}</div>
+                    <div class="name">{{option?.phone6}}</div>
+                  </div> -->
+                </mat-option>
+              </mat-autocomplete>
+            <div class="dropdown-menu w-550px" x-placement="bottom-end">
+                <div class="my-0">
+                    <div class="scroll scroll-pull pl-2 contactResultContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-tabs">
+            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                <li class="nav-item mr-0" role="presentation">
+                    <a class="nav-link active" id="allTab" data-bs-toggle="tab" data-bs-target="#allChatTab" type="button" role="tab" aria-controls="allChatTab" aria-selected="true" (click)="getActiveTabs('allTab')">All</a>
+                </li>
+                <li class="nav-item mr-0" role="presentation">
+                    <a class="nav-link" id="groupTab" data-bs-toggle="tab" data-bs-target="#groupChatTab" type="button" role="tab" aria-controls="groupChatTab" aria-selected="true" (click)="getActiveTabs('groupTab')">Group</a>
+                </li>
+                <li class="nav-item mr-0" role="presentation">
+                    <a class="nav-link" id="memberTab" data-bs-toggle="tab" data-bs-target="#memberChatTab" type="button" role="tab" aria-controls="memberChatTab" aria-selected="true" (click)="getActiveTabs('memberTab')">Member</a>
+                </li>
+            </ul>
+            <div class="tab-content tab-chat" id="myTabContent" infiniteScroll [scrollWindow]="false" (scrolled)="getChatAll(true)"  >
+                <div class="tab-pane fade active show" id="allChatTab" role="tabpanel" aria-labelledby="allChatTab" *ngFor="let item of allChatNumbers">
+                    <ul class="list-group" id="allChat">
+                        <li class="list-group-item">
+                            <div class="user-row" [ngClass]="chatUser?.memberId == item.memberId &&  chatUser?.phoneNumber == item.phoneNumber? 'selected': ''" (click)="GetChatHistory(item)">
+                                <div class="user-info" >
+                                    <span class="profile-pic">{{getShortName(item?.badgeNumber)}}</span>
+                                    <div class="info">
+                                        <p class="chat-username">{{item?.name}}</p>
+                                        <p class="text-muted text-nowrap">{{item?.phoneNumber}}</p>
+                                        <p class="chat-text">
+                                           {{item?.textMessage}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="other-info">
+                                    <p class="chat-time">{{item?.messageCreateOn | date : 'hh:mm a'}}</p>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="groupChatTab" role="tabpanel" aria-labelledby="groupChatTab">
+                    <ul class="list-group" id="groupChat">
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="memberChatTab" role="tabpanel" aria-labelledby="memberChatTab" infiniteScroll [scrollWindow]="false" (scrolled)="getChatAll(true)"  >
+                    <ul class="list-group" id="memberChat"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-chat-window memberMessageBackground">
+        <div class="top-name-area">
+            <div class="name d-flex flex-column">
+                <p>{{selectedClient?.name}}</p>
+                <span class="text-muted">{{selectedClient?.phoneNumber}}</span>
+            </div>
+            <a (click)="close()" class="close-btn pointer">
+                <img class="" src="../../../assets/images/close-icon.png">
+            </a>
+        </div>
+        <div  #chatContainer id="chatContainer" class="middle-chat-area custom-scroll">
+            <div *ngFor="let chat of chatHistory">
+              <div class="reply" *ngIf="chat.messageType === 'Outbound'">
+                <p>
+                    <span>{{chat.textMessage}}</span>
+                    <span class="date">{{chat.messageCreateOn}}</span>
+                </p>
+            </div>
+            <div class="message" *ngIf="chat.messageType === 'Inbound'">
+                <p>
+                    <span>{{chat.textMessage}}</span>
+                    <span class="date">{{chat.messageCreateOn}}</span>
+                </p>
+            </div>
+            </div>
+        </div>
+        <form [formGroup]="messageForm">
+          <div class="bottom-area">
+              <div class="message-area">
+                  <textarea class="form-control border-0 custom-scroll" placeholder="Write your message..."
+                      id="chatMessage" formControlName="textMessage"></textarea>
+                  <button *ngIf="messageForm.controls['textMessage'].value" class="btn btn-send" id="btn-send"><img src="../../../assets/images/send-icon.svg"
+                          alt="" (click)="addChat()"></button>
+                  <div class="icons">
+                      <a href="javascript:void(0)">
+                          <img src="../../../assets/images/attachment.svg" alt="">
+                      </a>
+                      <a href="javascript:void(0)">
+                          <img src="../../../assets/images/emoji.svg" alt="">
+                      </a>
+                      <a href="javascript:void(0)" class="messageSectionMic">
+                          <img src="../../../assets/images/mic.svg" class="messageSectionMicGray" alt=""
+                              title="Speech To Text">
+                          <img src="../../../assets/images/micred.svg" class="messageSectionMicRed d-none" alt=""
+                              title="Speech To Text">
+                      </a>
+                  </div>
+              </div>
+              <div class="button-area" id="chatShortMessage"></div>
+          </div>
+        </form>
+    </div>
+</div>

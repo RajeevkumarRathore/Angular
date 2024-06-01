@@ -1,0 +1,77 @@
+.pcr-popup{
+    background-color: var(--color-white);
+    border-radius: 8px;
+    &-number {
+        background-color: var(--color-sky-light);
+        padding: 8px;
+        border-radius: 8px;
+    }
+    &_record{
+        .heading-list{
+            padding: 8px;
+            padding-left: 16px;
+            &_name{
+                color: var(--color-gray-6);
+                font-size: 12px;
+            }
+        }
+        &-data{
+            padding: 8px;
+            border: 1px solid var(--color-gray-1);
+            border-radius: 4px;
+            padding-left: 16px;
+            margin-bottom: 8px;
+            .data-listing{
+                .data-info{
+                    .members{
+                        border: 1px solid var(--color-gray-3);
+                        padding: 0.41px 8px;
+                        border-radius: 4px;
+                    }
+                }
+
+
+            }
+        }
+        .column{
+            &-width_20{
+              width: 20%;
+            }
+            &-width_25{
+                width: 25%;
+              }
+              &-width_30{
+                width: 30%;
+              }
+              &-width_50{
+                width: 50%;
+              }
+              &-width_60{
+                width: 60%;
+              }
+        }
+    }
+
+    &_btn{
+         .btn{
+            min-width: 102px;
+         }
+        .btn-reminder {
+            border: 1px solid var(--color-red-1);
+        }
+    }
+    .footer-message {
+        bottom: 90px;
+        &-box {
+            width: 222px;
+            background-color: var(--color-white);
+            box-shadow: 0px 12px 50px rgb(0,0,0,15%);
+            padding: 13px 17px;
+            border-radius: 4px;
+            textarea{
+                border: 1px solid var(--color-gray-1);
+            }
+        }
+
+    }
+}

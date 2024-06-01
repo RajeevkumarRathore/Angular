@@ -1,0 +1,69 @@
+<div class="contact-details mt-1">
+  <table class="table table-default">
+   <thead>
+       <tr>
+           <th class=" font-12">Connected Phones</th>
+           <!-- <th class=" font-12">Call Type</th> -->
+           <th class=" font-12">Active</th>
+           <th class=" font-12">App </th>
+           <th class=" font-12">Notification</th>
+           <th class=" font-12">Primary</th>
+           <th class=" font-12">Action</th>
+       </tr>
+   </thead>
+   <tbody *ngFor="let item of phoneNumberList">
+       <tr class="border-bottom" *ngIf="item.id != 0">
+           <td class="px-0"><input class="form-control form-control-sm w-75" type="text" maxlength="10" [(ngModel)]="item.phone" [disabled]="item.phoneNumber === item.phone" (focusout)="editPhoneNumber(item)" /></td>
+           <!-- <td>Fire alarm</td> -->
+           <td class="px-0">
+             <mat-slide-toggle [(ngModel)]="item.isActive" (click)="switchStatusOfMemberPhone(item,'active')"></mat-slide-toggle>
+           </td>
+           <td class="px-0">
+             <mat-slide-toggle [(ngModel)]="item.isAppPermitted" (click)="switchStatusOfMemberPhone(item,'appPermitted')"></mat-slide-toggle>
+           </td>
+           <td class="px-0">
+             <mat-slide-toggle [(ngModel)]="item.isNotificationsOn" (click)="switchStatusOfMemberPhone(item,'notification')"></mat-slide-toggle>
+           </td>
+           <td class="px-0">
+             <mat-slide-toggle [(ngModel)]="item.isPrimary" (click)="switchStatusOfMemberPhone(item,'primary')"></mat-slide-toggle>
+           </td>
+           <td class="px-0">
+             <div class="d-flex gap-2">
+               <span class="text-gray-2" (click)="editPhoneFeild(item.id)">
+                   <svg width="15" height="16">
+                       <use xlink:href="assets/images/sprite-icons.svg#edit-icon"></use>
+                     </svg>
+               </span>
+               <span class="text-gray-2" (click)="deletePhoneNumber(item.id)">
+                   <svg width="15" height="16">
+                       <use xlink:href="assets/images/sprite-icons.svg#delete-icon"></use>
+                     </svg>
+               </span>
+             </div>
+           </td>
+       </tr>
+   </tbody>
+  </table>
+  <div class="add-number w-50 d-flex gap-2">
+   <input type="text" class="form-control form-control-sm l flex-1" [(ngModel)]="phoneNumber" maxlength="10">
+   <button class="btn py-1 btn-primary-light" (click)="addPhoneNumber()">+ Add</button>
+  </div>
+  <div class="contact-details-address mt-3">
+   <div class="d-flex flex-column gap-1 mb-3">
+       <span class="text-gray-3 ">Address</span>
+       <p>{{params?.address}}</p>
+   </div>
+   <!-- <div class="d-flex flex-column gap-1 mb-3">
+       <span class="text-gray-3 ">Work Address</span>
+       <p>7, Satmar DR, Apt 412, Monroe, New York, 10001</p>
+   </div>
+   <div class="d-flex flex-column gap-1 mb-3">
+       <span class="text-gray-3 ">Email</span>
+       <p>7, Satmar DR, Apt 412, Monroe, New York, 10001</p>
+   </div>
+   <div class="d-flex flex-column gap-1 mb-3">
+       <span class="text-gray-3 ">Note</span>
+       <p>7, Satmar DR, Apt 412, Monroe, New York, 10001</p>
+   </div> -->
+  </div>
+</div>

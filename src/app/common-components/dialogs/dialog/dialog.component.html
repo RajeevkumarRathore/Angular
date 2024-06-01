@@ -1,0 +1,15 @@
+<app-dialog-header
+  (close)="close.emit('')"
+  [description]="description"
+  [hideCloser]="hideCloser"
+  class="text-center"
+  >{{ title }}</app-dialog-header
+>
+<mat-dialog-content>
+  <ng-content></ng-content>
+</mat-dialog-content>
+<app-dialog-footer
+  *ngIf="actions && actions.length"
+  [actions]="actions"
+  (action)="emitAction($event)"
+></app-dialog-footer>

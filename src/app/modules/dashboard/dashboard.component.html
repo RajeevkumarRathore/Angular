@@ -1,0 +1,38 @@
+<div class="inner-wrapper">
+    <div class="inner-wrapper_header mb-3 d-flex justify-content-between gap-3 align-items-end">
+        <h2 class="font-18 text-white font-600 d-flex justify-content-end">
+         Dashboard
+        </h2>
+        <div class="all-results d-flex align-items-center gap-2">
+           <div class="d-flex overflow-auto gap-2 all-results-box">
+            <app-date-component-renderer [currentDateFilter]="currentDateFilter"
+                      [dashboardheader]="true"></app-date-component-renderer>
+            <div class="total-results-counts" *ngFor=" let data of headerData">
+                <div class="all-results-list bg-blue" *ngIf="data.text == 'CallVolume'">
+                    <span>{{data.text}}</span>
+                    <h2>{{data.total}}</h2>
+                </div>
+                <div class="all-results-list bg-success-1" *ngIf="data.text == 'Transport'">
+                    <span>{{data.text}}</span>
+                    <h2>{{data.total}}</h2>
+                </div>
+                <div class="all-results-list bg-yellow" *ngIf="data.text == 'RMA'">
+                    <span>{{data.text}}</span>
+                    <h2>{{data.total}}</h2>
+                </div>
+                <div class="all-results-list bg-red" *ngIf="data.text == 'ALS Dispatched'">
+                    <span>{{data.text}}</span>
+                    <h2>{{data.total}}</h2>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+    <div class="inner-wrapper_content">
+        <app-dashboard-charts></app-dashboard-charts>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,32 @@
+.date-button {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-wrap: nowrap;
+
+  &_button {
+    border: 1px solid var(--color-gray-1);
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    display: flex;
+    align-items: center;
+    width: 110px;
+    color: #000;
+    cursor: pointer;
+
+    .date-button_icon {
+      margin-left: auto;
+      font-size: 9px;
+    }
+
+    .date-button_format {
+      max-width: 110px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}

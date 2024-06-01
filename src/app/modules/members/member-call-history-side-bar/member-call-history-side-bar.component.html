@@ -1,0 +1,61 @@
+<div class="card_report side-wrapper_details side-panel">
+  <div class="card_report-header p-3 d-flex align-items-center justify-content-between side-panel-header">
+    <div >
+      <svg width="10" height="10" (click)="close()">
+        <use xlink:href="assets/images/sprite-icons.svg#back-arrow-icon"></use>
+      </svg>
+      <span class="ms-3">{{callHistoryDetail?.localCadNumber}}</span>
+    </div>
+    <div class="ms-auto">
+      <span class="close-btn text-gray-3" (click)="close()">
+        <svg width="10" height="10">
+          <use xlink:href="assets/images/sprite-icons.svg#close-icon"></use>
+        </svg>
+      </span>
+    </div>
+    </div>
+    <div class="report-info side-panel-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <span class="text-gray-3 font-12 fw-light">Caller Name</span>
+            <p class="font-12">{{callHistoryDetail?.fullName}}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <span class="text-gray-3 font-12 fw-light">Date & Time</span>
+            <p class="font-12">{{callHistoryDetail?.createdDate | date: 'dd.MM.yyyy hh:mm a'}}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <span class="text-gray-3 font-12 fw-light">Location</span>
+            <p class="font-12">{{callHistoryDetail?.address}} </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <span class="text-gray-3 font-12 fw-light">Phone</span>
+            <p class="font-12">{{callHistoryDetail?.callerNumber}}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <span class="text-gray-3 font-12 fw-light">Member</span>
+            <p class="font-12 mb-1 d-flex flex-wrap gap-1" >
+              <span class="bus-border" *ngFor="let item of callHistoryDetail?.members">
+                {{item.badgeNumber}}
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="popup-detail-callbox form-group">
+            <p class="text-gray-3 font-12 fw-light mb-1 mb-1">Call Type</p>
+            <span class="font-10 bg-yellow py-1 px-2 text-white radius24">{{callHistoryDetail?.agencySegment.toUpperCase()}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

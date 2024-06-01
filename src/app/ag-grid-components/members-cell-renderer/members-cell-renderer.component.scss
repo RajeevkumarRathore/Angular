@@ -1,0 +1,17 @@
+.buses_number {
+  border: 1px solid #888888;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #888888;
+}
+.active-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  background-color: var(--color-success-4);
+  border-radius: 100%;
+}
+.member-badge {
+  background-color: #FF9A00;
+}

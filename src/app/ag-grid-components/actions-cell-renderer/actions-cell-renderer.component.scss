@@ -1,0 +1,14 @@
+.grid-actions {
+    .action-icon {
+        color: #bababa;
+        transition: var(--transition-primary);
+        &:hover {
+            color: var(--color-primary);
+        }
+        &.delete {
+            &:hover {
+                color: var(--color-red-1);
+            }
+        }
+    }
+}
